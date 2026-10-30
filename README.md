@@ -5,7 +5,7 @@ Baukasten für interaktive Mathe-Seiten, die der KI-Tutor **Betty** (fobizz, Gym
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@1/betty.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@main/betty.min.js"></script>
 <script>
 const CONFIG = { titel: "…", auftrag: "…", schritte: [ … ] };
 Betty.lernschritte(CONFIG);
@@ -26,6 +26,6 @@ Beispiele stehen im Ordner `beispiele/`. Antworten werden mathematisch geprüft 
 
 ## Aufbau
 
-`src/` enthält die Quellen (`term.js`, `tastatur.js`, `aufgabe.js`, `plot.js`, `seiten.js`, `basis.css`). `betty.js` ist daraus zusammengesetzt, `betty.min.js` mit terser verkleinert. Neue Versionen bekommen ein Tag `v1.x.y`; die Seiten laden über `@1` automatisch die neueste 1.x-Version.
+`src/` enthält die Quellen (`term.js`, `tastatur.js`, `aufgabe.js`, `plot.js`, `seiten.js`, `basis.css`). `betty.js` ist daraus zusammengesetzt, `betty.min.js` mit terser verkleinert. Die Seiten laden `@main`; Änderungen an `main` kommen nach spätestens etwa einem Tag bei allen Seiten an (Cache von jsDelivr). Deshalb wird vor jedem Push getestet.
 
 Keine Netzwerkzugriffe, keine Cookies, kein Speichern: Die Seiten laufen vollständig im Browser.
