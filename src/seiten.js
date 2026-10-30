@@ -149,5 +149,5 @@ const Betty = (() => {
     C.anzahlen.forEach((k, i) => $("knoepfe").appendChild(knopf(k === 1 ? "1-mal" : z(k, 0) + "-mal", () => ziehen(k), i === 0 ? "haupt" : "")));
     $("knoepfe").appendChild(knopf("Von vorn", neu)); beiGroesse(zeichne); neu();
   }
-  return { funktionen, lernschritte, uebung, tastatur, zufall, probearbeit: C => probearbeit(C, { seite, $, beiGroesse, rundPruefen }), version: "1.0.0" };
+  return { funktionen, lernschritte, uebung, tastatur, zufall, probearbeit: C => probearbeit(C, { seite, $, beiGroesse, rundPruefen }), baum: C => baumSeite(C, { seite, $, beiGroesse }), umformen: C => umformenSeite(C, { seite, $ }), version: "1.0.0" };
 })();

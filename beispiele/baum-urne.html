@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@main/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Zweimal ziehen ohne Zurücklegen",
+  auftrag: "In einer Urne liegen 3 rote und 2 blaue Kugeln. Es wird zweimal ohne Zurücklegen gezogen. Ergänze die fehlenden Wahrscheinlichkeiten, tippe dann die Pfade für „beide Kugeln gleichfarbig“ an.",
+  stufen: ["1. Zug", "2. Zug"],
+  kinder: [
+    { name: "r", p: "3/5", kinder: [{ name: "r", p: "2/4", offen: true }, { name: "b", p: "2/4", offen: true }] },
+    { name: "b", p: "2/5", kinder: [{ name: "r", p: "3/4", offen: true, tipp: "Nach einer blauen Kugel liegen noch 3 rote und 1 blaue in der Urne." }, { name: "b", p: "1/4", offen: true }] },
+  ],
+  ereignis: { name: "gleichfarbig" },
+  fragen: [
+    { frage: "Berechne $P(\\text{gleichfarbig})$.", antwort: "2/5", tipp: "Addiere die Wahrscheinlichkeiten der Pfade rr und bb.",
+      fehler: [{ antwort: "6/20", text: "Das ist nur der Pfad rr. Der Pfad bb gehört auch dazu." }] },
+  ],
+};
+if (window.Betty) Betty.baum(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>

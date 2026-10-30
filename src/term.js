@@ -106,7 +106,7 @@ const Term = (() => {
     switch (n.t) {
       case "zahl": return n.s.replace(/[.,]/, "{,}");
       case "var": { const g = i => GR.includes(i) ? "\\" + GRT[GR.indexOf(i)] + " " : i; return n.s.length > 1 ? g(n.s[0]) + "_{" + n.s.slice(1) + "}" : g(n.s); }
-      case "konst": return n.s === "π" ? "\\pi " : n.s === "∞" ? "\\infty " : "\\mathrm{e}";
+      case "konst": return n.s === "π" ? "\\pi " : n.s === "∞" ? "\\infty " : "e";
       case "fak": return (["zahl", "var", "klammer"].includes(n.a.t) ? tex(n.a) : "\\left(" + tex(n.a) + "\\right)") + "!";
       case "proz": return tex(n.a) + "\\,\\%";
       case "grad": return tex(n.a) + "^{\\circ}";
@@ -176,6 +176,8 @@ const Term = (() => {
       const q = x / y; if (k === null) k = q; else if (Math.abs(q - k) > 1e-7 * Math.max(1, Math.abs(k))) return false; n++;
     }
     if (k === null || n < 3 || Math.abs(k) < 1e-12) return false;
+    // Ohne gleichwertig: true nur Umstellen (Faktor ±1), damit „bringe auf Normalform“ nicht die Ausgangsgleichung gelten lässt
+    if (!o.gleichwertig && Math.abs(Math.abs(k) - 1) > 1e-7) return false;
     return k > 0 ? a.r === b.r : a.r === DREH[b.r];
   }
   function vergleiche(a, b, o) {
@@ -197,5 +199,8 @@ const Term = (() => {
   function lesbar(roh) {
     return norm(roh).replace(/!=/g, "≠").replace(/~/g, "≈").replace(/<=/g, "≤").replace(/>=/g, "≥").replace(/\*/g, "·").replace(/cbrt/g, "∛").replace(/sqrt/g, "√").replace(/\^2(?!\d)/g, "²").replace(/\^3(?!\d)/g, "³").replace(/-/g, "−").replace(/\./g, ",");
   }
-  return { norm, parse, gleich, texAntwort, lesbar };
+  // Zwei Gleichungen (oder Ungleichungen) gleichwertig? Ohne Sonderregel für „x = …“
+  function aequivalent(a, b) { try { const A = zerlege(a), B = zerlege(b); return A.length === 1 && B.length === 1 && A[0].art === "rel" && B[0].art === "rel" && relGleich(A[0], B[0], { gleichwertig: true }); } catch (e) { return false; } }
+  function seiten(s, v) { const r = zerlege(s)[0]; return r.art === "rel" ? [wert(r.links, v), wert(r.rechts, v)] : null; }
+  return { norm, parse, gleich, texAntwort, lesbar, aequivalent, seiten, zahl: s => wert(parse(norm(s)), {}) };
 })();

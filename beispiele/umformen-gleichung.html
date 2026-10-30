@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@main/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Gleichungen umformen",
+  auftrag: "Löse die Gleichungen Schritt für Schritt. Jede Zeile wird sofort geprüft.",
+  tastatur: { vorlage: "algebra", variablen: ["x"] },
+  aufgaben: [
+    { start: "3(x-2) = 2x+5", ziel: "x = 11", tipp: "Multipliziere zuerst die Klammer aus: $3(x-2) = 3x - 6$." },
+    { start: "5x + 4 = 2x - 8", ziel: "x = -4", tipp: "Bring alle x auf eine Seite: $| -2x$." },
+  ],
+};
+if (window.Betty) Betty.umformen(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>

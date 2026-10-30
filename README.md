@@ -20,6 +20,8 @@ Betty.lernschritte(CONFIG);
 | `Betty.funktionen` | Funktionen und Geometrie mit Reglern und ziehbaren Punkten |
 | `Betty.uebung` | Aufgaben mit Mathe-Tastatur, Tipp, Lösungsweg und Rückmeldung zu typischen Fehlern |
 | `Betty.probearbeit` | Probe-Klassenarbeit oder Probetest: Teil A/B, Punkte, Uhr, Auswahlaufgaben, Abgabe mit automatischer Prüfung |
+| `Betty.baum` | Baumdiagramm: Pfade antippen, Pfadregeln mit Brüchen, Lückenäste; dazu `g.baum` für Zeichnungen |
+| `Betty.umformen` | Gleichungen Zeile für Zeile lösen, jede Zeile wird auf Gleichwertigkeit geprüft, am Ende Probe |
 | `Betty.tastatur` | Formel eintippen und in den Chat kopieren |
 | `Betty.zufall` | Zufallsexperimente mit relativen Häufigkeiten |
 

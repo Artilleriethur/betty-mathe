@@ -92,3 +92,10 @@ h2{font-size:1.05rem;margin:0 0 6px}
 .auswertung{margin-top:8px;font-size:.9rem;color:var(--muted)}.auswertung p{margin:4px 0}
 .loesung{margin-top:6px;padding:8px 10px;border-left:3px solid var(--f3);background:#eef7f6;border-radius:0 8px 8px 0;color:var(--ink);font-size:1rem}
 .ergebnis{border-color:var(--f1);border-width:2px}.ergebnis h2{margin:0 0 6px}
+svg.baum{width:100%;display:block;user-select:none}
+#rechnung{margin-top:6px}#rechnung .zeile{padding:6px 10px;background:var(--panel);border-radius:8px;margin-top:6px;overflow-x:auto}
+#rechnung .summe{background:#fdf0e3;font-weight:600}#rechnung .katex-display{margin:0;text-align:left}
+.startzeile{padding:6px 10px;background:var(--panel);border-radius:8px;margin:6px 0 4px;overflow-x:auto}.startzeile .katex-display{margin:0;text-align:left}
+.zeile-um{display:grid;grid-template-columns:1fr 34%;gap:4px 8px;margin-top:8px;align-items:start}.zeile-um .erg{grid-column:1/-1;margin:0}
+.zeile-um .tastatur{grid-column:1/-1}.zeile-um .befehl input{font-size:16px;color:var(--muted)}
+@media (max-width:520px){.zeile-um{grid-template-columns:1fr 38%}}

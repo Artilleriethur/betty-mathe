@@ -1,6 +1,6 @@
-/* Betty-Mathe-Baukasten 1.1.0: Lernseiten, Mathe-Tastatur und Zeichnungen für den Mathe-Tutor Betty */
+/* Betty-Mathe-Baukasten 1.2.0: Lernseiten, Mathe-Tastatur und Zeichnungen für den Mathe-Tutor Betty */
 (() => {
-const BETTY_CSS = ":root{--ink:#1d2330;--muted:#5d6472;--line:#d9dce3;--grid:#eceef2;--axis:#2f3542;--panel:#f5f6f8;--f1:#1f5fbf;--f2:#d9730d;--f3:#13857a;--hilf:#7d8491;--gut:#13857a;--schlecht:#b3261e;color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 system-ui,-apple-system,\"Segoe UI\",Roboto,sans-serif}main{max-width:860px;margin:0 auto;padding:14px 16px 24px}h1{font-size:1.2rem;margin:0 0 4px}.auftrag{margin:0 0 12px;color:var(--muted)}button{font:inherit;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer}button.haupt{background:var(--f1);border-color:var(--f1);color:#fff}button:disabled{opacity:.45;cursor:default}.karte{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:0 0 12px}.knoepfe{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.feld input{width:100%;font:18px/1.4 ui-monospace,Consolas,monospace;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}.feld input:focus{outline:none;border-color:var(--f1)}.vorschau{margin-top:6px;padding:6px 10px;min-height:2.4em;background:var(--panel);border-radius:8px;overflow-x:auto;font-size:1.1rem}.vorschau.unfertig{color:var(--muted)}.vorschau .katex-display{margin:0;text-align:left}.tastatur{margin:8px 0 4px;padding:6px;background:var(--panel);border-radius:10px;max-width:560px;touch-action:manipulation;overscroll-behavior:contain;user-select:none}.tastatur .reiter{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}.tastatur .reiter button{padding:4px 10px;font-size:14px;border-radius:6px;background:#fff;min-height:32px}.tastatur .reiter button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}.tastatur .reiter .umschalten{margin-left:auto;background:#e9ebef}.tastatur .koerper{display:flex;gap:8px}.tastatur .links{flex:2;display:grid;grid-template-columns:repeat(2,1fr);gap:4px}.tastatur .rechts{flex:7;display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.taste{padding:0 2px;min-width:0;min-height:42px;font-size:18px;border-radius:7px;touch-action:manipulation;user-select:none;white-space:nowrap;overflow:hidden}.taste.lang{font-size:14px}.taste.lk{background:#fff}.taste.zf{background:#fff;font-weight:500}.taste.op{background:#f0f2f5}.taste.st{background:#e8eef9;color:#163f80}.taste.ak{background:#e3e6eb;font-size:16px}.taste.leer{visibility:hidden}@media (max-width:520px){.tastatur .koerper{flex-direction:column;gap:4px}.tastatur .links{grid-template-columns:repeat(4,1fr)}.taste{min-height:40px}}.feld.text textarea{width:100%;box-sizing:border-box;font:16px/1.45 system-ui,sans-serif;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;resize:vertical;color:var(--ink)}.feld.text textarea:focus{outline:none;border-color:var(--f1)}.feld.gesperrt input,.feld.gesperrt textarea{background:var(--panel);color:var(--ink)}.rueck{margin-top:8px;padding:8px 10px;border-radius:8px}.rueck.gut{background:#e6f4f1;color:#0b5c53}.rueck.schlecht{background:#fbeceb;color:#8c1d18}.tipp,.weg{margin-top:8px;padding:8px 10px;border-left:3px solid var(--f2);background:#fdf5ec;border-radius:0 8px 8px 0}.weg{border-left-color:var(--f3);background:#eef7f6}.ersatz textarea{width:100%;font:14px/1.4 ui-monospace,Consolas,monospace}.ersatz p{margin:8px 0 4px;color:var(--muted);font-size:.9rem}.klein{font-size:.9rem;color:var(--muted)}.nr{font-size:.8rem;font-weight:600;color:var(--muted);text-transform:none;margin-bottom:2px}h2{font-size:1.05rem;margin:0 0 6px}.frage{margin:0 0 8px}.optionen{display:grid;gap:6px;margin:4px 0}.optionen label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}.optionen input{width:18px;height:18px;accent-color:var(--f1)}.aufgabe{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.layout{display:grid;gap:14px}@media(min-width:760px){.layout{grid-template-columns:minmax(0,1fr) 340px;align-items:start}#figur{position:sticky;top:8px}}#figur{width:100%;display:block;border:1px solid var(--line);border-radius:8px;user-select:none}.tick{font-size:12px}.marke{font-size:14px;font-weight:600}.regler{display:block;margin:10px 0 0;font-weight:600}.regler input{width:100%;height:30px;accent-color:var(--f2)}.nav{justify-content:space-between}.punkte{display:flex;gap:6px;justify-content:center;margin-top:10px}.punkte button{width:14px;height:14px;padding:0;border-radius:50%;border:1.5px solid var(--hilf);background:#fff}.punkte button.fertig{background:var(--hilf)}.punkte button.an{background:var(--f1);border-color:var(--f1)}.layout.ohne{grid-template-columns:1fr}.panel{background:var(--panel);border-radius:8px;padding:10px 12px}.panel label{display:block;font-weight:600;margin:8px 0 0}.panel input[type=range]{width:100%;height:30px;accent-color:var(--f1)}.wert{float:right;font-weight:400;font-variant-numeric:tabular-nums}.term{margin:2px 0;font-size:1.05rem}.term b{font-size:.8rem;vertical-align:1px}.anzeige{margin:10px 0}.anzeige div{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding:4px 0;font-variant-numeric:tabular-nums}.stand{margin:10px 0;font-variant-numeric:tabular-nums}.diagramm{width:100%;display:block;border:1px solid var(--line);border-radius:8px}.uhr{position:sticky;top:0;z-index:5;margin:0 -2px 12px;padding:8px 12px;border-radius:8px;background:var(--ink);color:#fff;font-weight:600;font-variant-numeric:tabular-nums}.uhr.knapp{background:#9a5b00}.uhr.vorbei{background:var(--schlecht)}.uhr.fertig{background:var(--gut)}.start table.teile{border-collapse:collapse;width:100%;margin:4px 0 8px;font-size:.95rem}.start th,.start td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}.start th{color:var(--muted);font-weight:600;font-size:.85rem}.start td:last-child,.start th:last-child{text-align:right}.start td:nth-child(-n+2){white-space:nowrap}.summe{font-weight:600;margin:4px 0 10px}.wahl{display:grid;gap:6px;margin:8px 0}.wahl .frage{margin:4px 0 0;font-weight:600}.wahl label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}.wahl input{width:18px;height:18px;accent-color:var(--f1);flex:none}.teilkopf h2{margin:4px 0 0}.teilkopf p{margin:2px 0 10px}.aufgabe-pa .nr{display:flex;justify-content:space-between;gap:8px;font-size:.85rem}.pkt{color:var(--muted);font-weight:600;white-space:nowrap;margin-left:auto}.ta{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.ta:first-of-type{border-top:0}.ta-kopf{display:flex;gap:8px;align-items:baseline}.ta-text{flex:1}.feldzeile{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:8px}.feldzeile .feld{flex:1 1 180px;min-width:0}.feldzeile .vor,.feldzeile .nach{white-space:nowrap}.feldzeile .tastatur{flex-basis:100%}.feldzeile .vorschau{font-size:1rem;min-height:0;padding:4px 10px}.taste.st{font-size:15px}.fig{width:100%;display:block;border:1px solid var(--line);border-radius:8px;margin:8px 0}.papier{margin:8px 0 0;font-size:.9rem;color:var(--muted)}.papier::before{content:\"✎ \"}.klein-knopf{padding:4px 10px;font-size:.9rem;margin-top:8px}.erg{margin:4px 0 0;font-size:.95rem;font-weight:600}.erg.richtig{color:var(--gut)}.erg.falsch{color:var(--schlecht)}.erg.gerundet{color:#9a5b00}.erg.leer,.erg.offen{color:var(--muted)}.erg span{font-weight:400}.optionen label.richtig{border-color:var(--gut);background:#eef7f6}.optionen label.falsch{border-color:var(--schlecht);background:#fbeceb}.auswertung{margin-top:8px;font-size:.9rem;color:var(--muted)}.auswertung p{margin:4px 0}.loesung{margin-top:6px;padding:8px 10px;border-left:3px solid var(--f3);background:#eef7f6;border-radius:0 8px 8px 0;color:var(--ink);font-size:1rem}.ergebnis{border-color:var(--f1);border-width:2px}.ergebnis h2{margin:0 0 6px}";
+const BETTY_CSS = ":root{--ink:#1d2330;--muted:#5d6472;--line:#d9dce3;--grid:#eceef2;--axis:#2f3542;--panel:#f5f6f8;--f1:#1f5fbf;--f2:#d9730d;--f3:#13857a;--hilf:#7d8491;--gut:#13857a;--schlecht:#b3261e;color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 system-ui,-apple-system,\"Segoe UI\",Roboto,sans-serif}main{max-width:860px;margin:0 auto;padding:14px 16px 24px}h1{font-size:1.2rem;margin:0 0 4px}.auftrag{margin:0 0 12px;color:var(--muted)}button{font:inherit;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer}button.haupt{background:var(--f1);border-color:var(--f1);color:#fff}button:disabled{opacity:.45;cursor:default}.karte{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:0 0 12px}.knoepfe{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.feld input{width:100%;font:18px/1.4 ui-monospace,Consolas,monospace;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}.feld input:focus{outline:none;border-color:var(--f1)}.vorschau{margin-top:6px;padding:6px 10px;min-height:2.4em;background:var(--panel);border-radius:8px;overflow-x:auto;font-size:1.1rem}.vorschau.unfertig{color:var(--muted)}.vorschau .katex-display{margin:0;text-align:left}.tastatur{margin:8px 0 4px;padding:6px;background:var(--panel);border-radius:10px;max-width:560px;touch-action:manipulation;overscroll-behavior:contain;user-select:none}.tastatur .reiter{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}.tastatur .reiter button{padding:4px 10px;font-size:14px;border-radius:6px;background:#fff;min-height:32px}.tastatur .reiter button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}.tastatur .reiter .umschalten{margin-left:auto;background:#e9ebef}.tastatur .koerper{display:flex;gap:8px}.tastatur .links{flex:2;display:grid;grid-template-columns:repeat(2,1fr);gap:4px}.tastatur .rechts{flex:7;display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.taste{padding:0 2px;min-width:0;min-height:42px;font-size:18px;border-radius:7px;touch-action:manipulation;user-select:none;white-space:nowrap;overflow:hidden}.taste.lang{font-size:14px}.taste.lk{background:#fff}.taste.zf{background:#fff;font-weight:500}.taste.op{background:#f0f2f5}.taste.st{background:#e8eef9;color:#163f80}.taste.ak{background:#e3e6eb;font-size:16px}.taste.leer{visibility:hidden}@media (max-width:520px){.tastatur .koerper{flex-direction:column;gap:4px}.tastatur .links{grid-template-columns:repeat(4,1fr)}.taste{min-height:40px}}.feld.text textarea{width:100%;box-sizing:border-box;font:16px/1.45 system-ui,sans-serif;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;resize:vertical;color:var(--ink)}.feld.text textarea:focus{outline:none;border-color:var(--f1)}.feld.gesperrt input,.feld.gesperrt textarea{background:var(--panel);color:var(--ink)}.rueck{margin-top:8px;padding:8px 10px;border-radius:8px}.rueck.gut{background:#e6f4f1;color:#0b5c53}.rueck.schlecht{background:#fbeceb;color:#8c1d18}.tipp,.weg{margin-top:8px;padding:8px 10px;border-left:3px solid var(--f2);background:#fdf5ec;border-radius:0 8px 8px 0}.weg{border-left-color:var(--f3);background:#eef7f6}.ersatz textarea{width:100%;font:14px/1.4 ui-monospace,Consolas,monospace}.ersatz p{margin:8px 0 4px;color:var(--muted);font-size:.9rem}.klein{font-size:.9rem;color:var(--muted)}.nr{font-size:.8rem;font-weight:600;color:var(--muted);text-transform:none;margin-bottom:2px}h2{font-size:1.05rem;margin:0 0 6px}.frage{margin:0 0 8px}.optionen{display:grid;gap:6px;margin:4px 0}.optionen label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}.optionen input{width:18px;height:18px;accent-color:var(--f1)}.aufgabe{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.layout{display:grid;gap:14px}@media(min-width:760px){.layout{grid-template-columns:minmax(0,1fr) 340px;align-items:start}#figur{position:sticky;top:8px}}#figur{width:100%;display:block;border:1px solid var(--line);border-radius:8px;user-select:none}.tick{font-size:12px}.marke{font-size:14px;font-weight:600}.regler{display:block;margin:10px 0 0;font-weight:600}.regler input{width:100%;height:30px;accent-color:var(--f2)}.nav{justify-content:space-between}.punkte{display:flex;gap:6px;justify-content:center;margin-top:10px}.punkte button{width:14px;height:14px;padding:0;border-radius:50%;border:1.5px solid var(--hilf);background:#fff}.punkte button.fertig{background:var(--hilf)}.punkte button.an{background:var(--f1);border-color:var(--f1)}.layout.ohne{grid-template-columns:1fr}.panel{background:var(--panel);border-radius:8px;padding:10px 12px}.panel label{display:block;font-weight:600;margin:8px 0 0}.panel input[type=range]{width:100%;height:30px;accent-color:var(--f1)}.wert{float:right;font-weight:400;font-variant-numeric:tabular-nums}.term{margin:2px 0;font-size:1.05rem}.term b{font-size:.8rem;vertical-align:1px}.anzeige{margin:10px 0}.anzeige div{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding:4px 0;font-variant-numeric:tabular-nums}.stand{margin:10px 0;font-variant-numeric:tabular-nums}.diagramm{width:100%;display:block;border:1px solid var(--line);border-radius:8px}.uhr{position:sticky;top:0;z-index:5;margin:0 -2px 12px;padding:8px 12px;border-radius:8px;background:var(--ink);color:#fff;font-weight:600;font-variant-numeric:tabular-nums}.uhr.knapp{background:#9a5b00}.uhr.vorbei{background:var(--schlecht)}.uhr.fertig{background:var(--gut)}.start table.teile{border-collapse:collapse;width:100%;margin:4px 0 8px;font-size:.95rem}.start th,.start td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}.start th{color:var(--muted);font-weight:600;font-size:.85rem}.start td:last-child,.start th:last-child{text-align:right}.start td:nth-child(-n+2){white-space:nowrap}.summe{font-weight:600;margin:4px 0 10px}.wahl{display:grid;gap:6px;margin:8px 0}.wahl .frage{margin:4px 0 0;font-weight:600}.wahl label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}.wahl input{width:18px;height:18px;accent-color:var(--f1);flex:none}.teilkopf h2{margin:4px 0 0}.teilkopf p{margin:2px 0 10px}.aufgabe-pa .nr{display:flex;justify-content:space-between;gap:8px;font-size:.85rem}.pkt{color:var(--muted);font-weight:600;white-space:nowrap;margin-left:auto}.ta{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.ta:first-of-type{border-top:0}.ta-kopf{display:flex;gap:8px;align-items:baseline}.ta-text{flex:1}.feldzeile{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:8px}.feldzeile .feld{flex:1 1 180px;min-width:0}.feldzeile .vor,.feldzeile .nach{white-space:nowrap}.feldzeile .tastatur{flex-basis:100%}.feldzeile .vorschau{font-size:1rem;min-height:0;padding:4px 10px}.taste.st{font-size:15px}.fig{width:100%;display:block;border:1px solid var(--line);border-radius:8px;margin:8px 0}.papier{margin:8px 0 0;font-size:.9rem;color:var(--muted)}.papier::before{content:\"✎ \"}.klein-knopf{padding:4px 10px;font-size:.9rem;margin-top:8px}.erg{margin:4px 0 0;font-size:.95rem;font-weight:600}.erg.richtig{color:var(--gut)}.erg.falsch{color:var(--schlecht)}.erg.gerundet{color:#9a5b00}.erg.leer,.erg.offen{color:var(--muted)}.erg span{font-weight:400}.optionen label.richtig{border-color:var(--gut);background:#eef7f6}.optionen label.falsch{border-color:var(--schlecht);background:#fbeceb}.auswertung{margin-top:8px;font-size:.9rem;color:var(--muted)}.auswertung p{margin:4px 0}.loesung{margin-top:6px;padding:8px 10px;border-left:3px solid var(--f3);background:#eef7f6;border-radius:0 8px 8px 0;color:var(--ink);font-size:1rem}.ergebnis{border-color:var(--f1);border-width:2px}.ergebnis h2{margin:0 0 6px}svg.baum{width:100%;display:block;user-select:none}#rechnung{margin-top:6px}#rechnung .zeile{padding:6px 10px;background:var(--panel);border-radius:8px;margin-top:6px;overflow-x:auto}#rechnung .summe{background:#fdf0e3;font-weight:600}#rechnung .katex-display{margin:0;text-align:left}.startzeile{padding:6px 10px;background:var(--panel);border-radius:8px;margin:6px 0 4px;overflow-x:auto}.startzeile .katex-display{margin:0;text-align:left}.zeile-um{display:grid;grid-template-columns:1fr 34%;gap:4px 8px;margin-top:8px;align-items:start}.zeile-um .erg{grid-column:1/-1;margin:0}.zeile-um .tastatur{grid-column:1/-1}.zeile-um .befehl input{font-size:16px;color:var(--muted)}@media (max-width:520px){.zeile-um{grid-template-columns:1fr 38%}}";
 /* Term: Eingaben lesen, als Formel anzeigen und mathematisch vergleichen */
 const Term = (() => {
   const FN = { sin: Math.sin, cos: Math.cos, tan: Math.tan, ln: Math.log, log: Math.log10, lg: Math.log10, sqrt: Math.sqrt, cbrt: Math.cbrt, abs: Math.abs };
@@ -109,7 +109,7 @@ const Term = (() => {
     switch (n.t) {
       case "zahl": return n.s.replace(/[.,]/, "{,}");
       case "var": { const g = i => GR.includes(i) ? "\\" + GRT[GR.indexOf(i)] + " " : i; return n.s.length > 1 ? g(n.s[0]) + "_{" + n.s.slice(1) + "}" : g(n.s); }
-      case "konst": return n.s === "π" ? "\\pi " : n.s === "∞" ? "\\infty " : "\\mathrm{e}";
+      case "konst": return n.s === "π" ? "\\pi " : n.s === "∞" ? "\\infty " : "e";
       case "fak": return (["zahl", "var", "klammer"].includes(n.a.t) ? tex(n.a) : "\\left(" + tex(n.a) + "\\right)") + "!";
       case "proz": return tex(n.a) + "\\,\\%";
       case "grad": return tex(n.a) + "^{\\circ}";
@@ -179,6 +179,8 @@ const Term = (() => {
       const q = x / y; if (k === null) k = q; else if (Math.abs(q - k) > 1e-7 * Math.max(1, Math.abs(k))) return false; n++;
     }
     if (k === null || n < 3 || Math.abs(k) < 1e-12) return false;
+    // Ohne gleichwertig: true nur Umstellen (Faktor ±1), damit „bringe auf Normalform“ nicht die Ausgangsgleichung gelten lässt
+    if (!o.gleichwertig && Math.abs(Math.abs(k) - 1) > 1e-7) return false;
     return k > 0 ? a.r === b.r : a.r === DREH[b.r];
   }
   function vergleiche(a, b, o) {
@@ -200,7 +202,10 @@ const Term = (() => {
   function lesbar(roh) {
     return norm(roh).replace(/!=/g, "≠").replace(/~/g, "≈").replace(/<=/g, "≤").replace(/>=/g, "≥").replace(/\*/g, "·").replace(/cbrt/g, "∛").replace(/sqrt/g, "√").replace(/\^2(?!\d)/g, "²").replace(/\^3(?!\d)/g, "³").replace(/-/g, "−").replace(/\./g, ",");
   }
-  return { norm, parse, gleich, texAntwort, lesbar };
+  // Zwei Gleichungen (oder Ungleichungen) gleichwertig? Ohne Sonderregel für „x = …“
+  function aequivalent(a, b) { try { const A = zerlege(a), B = zerlege(b); return A.length === 1 && B.length === 1 && A[0].art === "rel" && B[0].art === "rel" && relGleich(A[0], B[0], { gleichwertig: true }); } catch (e) { return false; } }
+  function seiten(s, v) { const r = zerlege(s)[0]; return r.art === "rel" ? [wert(r.links, v), wert(r.rechts, v)] : null; }
+  return { norm, parse, gleich, texAntwort, lesbar, aequivalent, seiten, zahl: s => wert(parse(norm(s)), {}) };
 })();
 /* Tex: Formeln mit KaTeX setzen, ohne KaTeX lesbarer Text */
 const Tex = {
@@ -542,6 +547,149 @@ const g = {
     return el("path", { d: "M" + p.join("L") + (o.fuellen ? `L${px(mx).toFixed(1)} ${py(my).toFixed(1)}Z` : ""), fill: o.fuellen || "none", "fill-opacity": o.fuellen ? 0.2 : undefined, stroke: o.farbe || "var(--f1)", "stroke-width": o.breite || 2.5, "stroke-dasharray": o.gestrichelt ? "6 5" : undefined }); },
   kreis(mx, my, r, o = {}) { return g.bogen(mx, my, r, 0, 2 * Math.PI, o); },
 };
+/* Baumdiagramme: lesbar auch am Handy, Pfade antippen, Pfadregeln mit Brüchen, Lückenäste mit Tastatur.
+   Knoten: { name, p, kinder, offen }. p als Text: "3/5", "0,4", "25%". Kurzform für Urnen: { urne: { r: 3, b: 2 }, zuege: 2, zuruecklegen: false }. */
+const Bruch = (() => {
+  const ggt = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a || 1; };
+  const kurz = b => { const g = ggt(b.z, b.n); return { z: b.z / g, n: b.n / g, dez: b.dez }; };
+  function lies(s) {
+    s = String(s ?? "").replace(/\s/g, "").replace(/[−–]/g, "-");
+    let m = s.match(/^(-?\d+)\/(\d+)$/); if (m) return { z: +m[1], n: +m[2], dez: false };
+    m = s.match(/^(-?\d+(?:[.,]\d+)?)%$/); if (m) { const d = (m[1].split(/[.,]/)[1] || "").length; return kurz({ z: Math.round(parseFloat(m[1].replace(",", ".")) * 10 ** d), n: 100 * 10 ** d, dez: true }); }
+    m = s.match(/^-?\d+(?:[.,](\d+))?$/); if (m) { const d = (m[1] || "").length; return kurz({ z: Math.round(parseFloat(s.replace(",", ".")) * 10 ** d), n: 10 ** d, dez: true }); }
+    let v = NaN; try { v = Term.zahl(s); } catch (e) {}
+    return { z: v, n: 1, dez: true, roh: true };
+  }
+  const mal = (a, b) => ({ z: a.z * b.z, n: a.n * b.n, dez: a.dez || b.dez });
+  const plus = (a, b) => kurz({ z: a.z * b.n + b.z * a.n, n: a.n * b.n, dez: a.dez || b.dez });
+  const wert = b => b.z / b.n;
+  const tex = b => b.dez || b.roh ? z(wert(b), 4).replace("−", "-").replace(",", "{,}") : b.n === 1 ? String(b.z) : (b.z < 0 ? "-" : "") + "\\frac{" + Math.abs(b.z) + "}{" + b.n + "}";
+  const text = b => b.dez || b.roh ? z(wert(b), 4) : b.n === 1 ? String(b.z) : b.z + "/" + b.n;
+  return { lies, mal, plus, kurz, wert, tex, text, ggt };
+})();
+
+// Pfadname: rr bei einbuchstabigen Namen, sonst 1; 6
+const pfadName = p => p.every(k => /^[A-Za-zÄÖÜäöü]$/.test(k.name)) ? p.map(k => k.name).join("") : p.map(k => k.name).join("; ");
+function baumAusUrne(U) {
+  const namen = Object.keys(U.urne), zuege = U.zuege || 2, zurueck = !!U.zuruecklegen;
+  function knoten(rest, tiefe) {
+    if (tiefe >= zuege) return [];
+    const summe = namen.reduce((s, k) => s + rest[k], 0);
+    return namen.filter(k => rest[k] > 0).map(k => {
+      const r2 = Object.assign({}, rest); if (!zurueck) r2[k]--;
+      return { name: k, p: rest[k] + "/" + summe, kinder: knoten(zurueck ? rest : r2, tiefe + 1) };
+    });
+  }
+  return { stufen: U.stufen || Array.from({ length: zuege }, (_, i) => (i + 1) + ". Zug"), kinder: knoten(Object.assign({}, U.urne), 0) };
+}
+
+// Zeichnet den Baum in ein SVG. o: { breite, hoehe (nur in Zeichnungen), zeile, info, produkte, markiert: Set von Pfadschlüsseln, beiKlick }
+function baumZeichnen(ziel, B, o = {}) {
+  if (B.urne) B = baumAusUrne(B);
+  const Wp = o.breite || Math.max(280, Math.round(ziel.getBoundingClientRect().width || 640)), schmal = Wp < 460;
+  const blaetter = [];
+  (function sammle(k, pfad) { (k.kinder || []).forEach(c => { const p2 = pfad.concat([c]); if (c.kinder && c.kinder.length) sammle(c, p2); else blaetter.push(p2); }); })(B, []);
+  const tiefe = Math.max(1, ...blaetter.map(p => p.length)), kopf = B.stufen ? 24 : 6;
+  const info = o.info !== false, infoW = info ? (schmal ? 64 : 150) : 0;
+  const zeile = o.hoehe ? Math.max(20, (o.hoehe - kopf - 8) / Math.max(1, blaetter.length)) : (o.zeile || (schmal ? 36 : 40));
+  const Hp = o.hoehe || Math.round(kopf + blaetter.length * zeile + 8);
+  if (!o.hoehe) { ziel.setAttribute("viewBox", `0 0 ${Wp} ${Hp}`); ziel.style.height = Hp + "px"; ziel.textContent = ""; }
+  const gross = schmal ? 13 : 14;
+  const mass = s => { const t = el("text", { x: -999, y: -999, "font-size": gross, "font-weight": 700 }, ziel); t.textContent = s; let w = s.length * 8; try { w = t.getBBox().width || w; } catch (e) {} t.remove(); return w; };
+  const blattBreite = Math.max(10, ...blaetter.map(p => mass(p[p.length - 1].name))) / 2 + 6;
+  const x0 = 16, sx = k => x0 + k * (Wp - x0 - infoW - blattBreite - 10) / tiefe;
+  const schl = pfad => pfad.map(k => k.name).join("-");
+  const lage = new Map(); blaetter.forEach((p, i) => lage.set(p, kopf + (i + 0.5) * zeile));
+  const yVon = (k, pfad) => { if (!k.kinder || !k.kinder.length) return lage.get(blaetter.find(b => b.length === pfad.length && b.every((x, i) => x === pfad[i]))); const ys = k.kinder.map(c => yVon(c, pfad.concat([c]))); return (Math.min(...ys) + Math.max(...ys)) / 2; };
+  const mk = o.markiert || new Set();
+  const teil = (pfad, i) => schl(pfad.slice(0, i + 1));
+  const aufMarkiert = pfad => [...mk].some(m => m === schl(pfad) || m.startsWith(schl(pfad) + "-"));
+  if (B.stufen) B.stufen.forEach((s, i) => { if (i < tiefe) el("text", { x: sx(i + 1), y: 15, "text-anchor": "middle", class: "tick", fill: "var(--muted)" }, ziel).textContent = s; });
+  const ebeneKanten = el("g", {}, ziel), ebeneMarken = el("g", {}, ziel), ebeneKnoten = el("g", {}, ziel);
+  function kasten(x, y, text, farbe, parent, fett) {
+    const t = el("text", { x, y: y + gross * 0.36, "text-anchor": "middle", "font-size": gross, fill: farbe || "var(--ink)", "font-weight": fett ? 700 : 500 }, parent); t.textContent = text;
+    let b; try { b = t.getBBox(); } catch (e) { b = { x: x - text.length * 4, y: y - 8, width: text.length * 8, height: 16 }; }
+    const r = el("rect", { x: b.x - 4, y: b.y - 2, width: b.width + 8, height: b.height + 4, rx: 5, fill: "#fff" }, parent); parent.insertBefore(r, t); return t;
+  }
+  (function male(k, pfad, x, y) {
+    (k.kinder || []).forEach(c => {
+      const p2 = pfad.concat([c]), cx = sx(p2.length), cy = yVon(c, p2), an = aufMarkiert(p2);
+      el("line", { x1: x, y1: y, x2: cx, y2: cy, stroke: an ? "var(--f2)" : "var(--hilf)", "stroke-width": an ? 3.5 : 1.8 }, ebeneKanten);
+      if (c.p != null || c.offen) {
+        const t = 0.55, mx = x + (cx - x) * t, my = y + (cy - y) * t, auf = cy <= y, ver = auf ? -gross * 0.75 : gross * 0.75;
+        const txt = c.offen && !c.geloest ? "?" : Bruch.text(Bruch.lies(c.p));
+        kasten(mx, my + (Math.abs(cy - y) < 2 ? -gross * 0.75 : ver * 0.65), txt, c.offen ? (c.geloest ? "var(--gut)" : "var(--f2)") : "var(--f1)", ebeneMarken, c.offen);
+      }
+      kasten(cx, cy, c.name, an ? "var(--f2)" : "var(--ink)", ebeneKnoten, true);
+      male(c, p2, cx + 0, cy);
+    });
+  })(B, [], x0, yVon(B, []));
+  el("circle", { cx: x0, cy: yVon(B, []), r: 4, fill: "var(--ink)" }, ebeneKnoten);
+  if (info) blaetter.forEach(p => {
+    const y = lage.get(p), an = mk.has(schl(p)), xi = sx(tiefe) + blattBreite + 4;
+    const pr = p.reduce((a, k) => (k.offen && !k.geloest) || a == null ? null : Bruch.mal(a, Bruch.lies(k.p)), { z: 1, n: 1, dez: false });
+    const zeig = o.produkte === false || !pr ? (schmal ? "" : pfadName(p)) : (schmal ? "" : pfadName(p) + ": ") + Bruch.text(Bruch.kurz(pr));
+    if (an) el("rect", { x: xi - 6, y: y - zeile / 2 + 3, width: Wp - xi + 4, height: zeile - 6, rx: 6, fill: "#fdf0e3" }, ebeneKanten);
+    const t = el("text", { x: xi, y: y + 4, "font-size": schmal ? 12.5 : 13.5, fill: an ? "var(--f2)" : "var(--muted)" }, ebeneKnoten); t.textContent = zeig;
+    if (o.beiKlick) { const h = el("rect", { x: sx(tiefe) - 26, y: y - zeile / 2, width: Wp - sx(tiefe) + 26, height: zeile, fill: "transparent", style: "cursor:pointer" }, ziel); h.addEventListener("click", () => o.beiKlick(schl(p), p)); }
+  });
+  return { blaetter, schl, hoehe: Hp };
+}
+g.baum = (B, o = {}) => baumZeichnen(svg, B, Object.assign({ breite: W, hoehe: H }, o, { markiert: new Set(o.markiert || []) }));
+
+function baumSeite(C, H) {
+  const { seite, $, beiGroesse } = H;
+  seite(C, `<div class="karte"><svg id="baum" class="baum" role="img" aria-label="Baumdiagramm"></svg><p class="klein" id="baumhinweis"></p><div id="rechnung" aria-live="polite"></div></div><div id="luecken"></div><div id="aufgaben"></div><div class="karte"><p id="stand"></p><button type="button" class="haupt" id="kopieren">Ergebnisse in den Chat kopieren</button></div>`);
+  const B = C.urne ? baumAusUrne(C) : C.baum || C, mk = new Set(), schlVon = s => Array.isArray(s) ? s.join("-") : String(s);
+  (C.markiert || (C.ereignis && C.ereignis.pfade) || []).forEach(s => mk.add(schlVon(s)));
+  let erg = { blaetter: [] };
+  const zeichne = () => { erg = baumZeichnen($("baum"), B, { markiert: mk, produkte: C.produkte !== false, beiKlick: (k) => { mk.has(k) ? mk.delete(k) : mk.add(k); zeichne(); rechne(); } }); };
+  $("baumhinweis").textContent = "Tipp auf einen Pfad (rechts neben dem Ende), um ihn auszuwählen. Die Rechnung steht darunter.";
+  function rechne() {
+    const box = $("rechnung"); box.textContent = "";
+    const pfade = erg.blaetter.filter(p => mk.has(erg.schl(p)));
+    if (!pfade.length) return;
+    const offen = pfade.some(p => p.some(k => k.offen && !k.geloest));
+    if (offen) { neu("p", "klein", box).textContent = "Füll zuerst die fehlenden Wahrscheinlichkeiten aus."; return; }
+    const prod = pfade.map(p => { const fs = p.map(k => Bruch.lies(k.p)), roh = fs.reduce(Bruch.mal, { z: 1, n: 1, dez: false }), k2 = Bruch.kurz(roh);
+      const dez = fs.some(f => f.dez || f.roh); let t = fs.map(Bruch.tex).join(" \\cdot ") + " = " + (dez ? Bruch.tex(Object.assign({}, k2, { dez: true })) : Bruch.tex(roh) + (roh.n !== k2.n ? " = " + Bruch.tex(k2) : ""));
+      return { name: pfadName(p), t, wert: k2, dez }; });
+    const pn = s => /^[A-Za-z]+$/.test(s) ? s : "\\text{" + s + "}";
+    prod.forEach(q => { const d = document.createElement("div"); d.className = "zeile"; Tex.formel("P(" + pn(q.name) + ") = " + q.t, d); box.appendChild(d); });
+    if (prod.length > 1) {
+      const dez = prod.some(q => q.dez), summe = prod.reduce((a, q) => Bruch.plus(a, q.wert), { z: 0, n: 1, dez: false });
+      let t;
+      if (dez) t = prod.map(q => Bruch.tex(Object.assign({}, q.wert, { dez: true }))).join(" + ") + " = " + Bruch.tex(Object.assign({}, summe, { dez: true }));
+      else { const kgv = prod.reduce((a, q) => a * q.wert.n / Bruch.ggt(a, q.wert.n), 1), zs = prod.reduce((s, q) => s + q.wert.z * kgv / q.wert.n, 0);
+        t = prod.map(q => Bruch.tex(q.wert)).join(" + ") + " = " + (zs !== summe.z || kgv !== summe.n ? "\\frac{" + zs + "}{" + kgv + "} = " : "") + Bruch.tex(summe); }
+      const d = document.createElement("div"); d.className = "zeile summe"; Tex.formel((C.ereignis && C.ereignis.name ? "P(" + pn(C.ereignis.name) + ")" : "P") + " = " + t, d); box.appendChild(d);
+    }
+  }
+  const neu = (tag, klasse, eltern) => { const e = document.createElement(tag); if (klasse) e.className = klasse; eltern.appendChild(e); return e; };
+  // Lückenäste
+  const luecken = []; (function suche(k, pfad) { (k.kinder || []).forEach(c => { const p2 = pfad.concat([c]); if (c.offen) luecken.push({ k: c, pfad: p2 }); suche(c, p2); }); })(B, []);
+  if (luecken.length) {
+    const kk = neu("div", "karte", $("luecken")); neu("p", "frage", kk).textContent = "Ergänze die fehlenden Wahrscheinlichkeiten (die Äste mit ?).";
+    luecken.forEach(L => { const z = neu("div", "feldzeile", kk), v = neu("span", "vor", z);
+      v.textContent = L.pfad.map((k, i) => (B.stufen && B.stufen[i] ? B.stufen[i] + ": " : "") + k.name).join(" → ") + " :";
+      L.feld = Tastatur.feld(z, { platzhalter: "z. B. 2/4", tastatur: C.tastatur || "stochastik", vorschau: "auto", beiEnter: pruefe }); L.erg = neu("div", "erg", kk); L.erg.hidden = true; });
+    const kn = neu("div", "knoepfe", kk); kn.appendChild(knopf("Prüfen", pruefe, "haupt"));
+  }
+  function pruefe() {
+    luecken.forEach(L => { const roh = L.feld.wert(); if (!roh) return; const ok = Term.gleich(roh, String(L.k.p), {}); L.versuche = (L.versuche || 0) + 1; L.k.geloest = ok; L.erg.hidden = false; L.erg.className = "erg " + (ok ? "richtig" : "falsch");
+      L.erg.textContent = ok ? "✓ " + L.pfad.map(k => k.name).join(" → ") + ": richtig" : "✗ " + L.pfad.map(k => k.name).join(" → ") + ": noch nicht. " + (L.k.tipp || "Wie viele Kugeln sind nach dem ersten Zug noch da?"); if (ok) L.feld.sperre(true); });
+    zeichne(); rechne(); stand();
+  }
+  const st = (C.fragen || C.aufgaben || []).map((a, i) => { const b = document.createElement("div"); b.className = "karte"; b.innerHTML = `<div class="nr">Frage ${i + 1}</div>`; $("aufgaben").appendChild(b); return baueAufgabe(b, a, i + 1, stand); });
+  function stand() { const l = luecken.filter(L => L.k.geloest).length; $("stand").innerHTML = (luecken.length ? "<b>Lücken: " + l + " von " + luecken.length + "</b>" : "") + (st.length ? (luecken.length ? " · " : "") + "<b>Fragen: " + st.filter(s => s.richtig).length + " von " + st.length + " richtig</b>" : "") || "Wähl Pfade aus und kopiere deine Ergebnisse in den Chat, wenn du Fragen hast."; }
+  $("kopieren").addEventListener("click", e => {
+    const z = [ergebnisText(C.titel || "Baumdiagramm", st)];
+    if (luecken.length) z.push("Lücken: " + luecken.map(L => L.pfad.map(k => k.name).join("→") + " = " + (L.feld.wert() ? Term.lesbar(L.feld.wert()) : "–") + (L.k.geloest ? " ✓" : L.versuche ? " ✗" : "")).join("; "));
+    if (mk.size) z.push("Ausgewählte Pfade: " + erg.blaetter.filter(p => mk.has(erg.schl(p))).map(pfadName).join(", "));
+    kopiere(z.join("\n"), e.currentTarget);
+  });
+  beiGroesse(zeichne); zeichne(); rechne(); stand();
+}
 /* Probearbeit: Probe-Klassenarbeit oder Probetest mit Teil A/B, Punkten, Uhr, Startauswahl und Auswertung.
    Ergebnisfelder werden nach der Abgabe automatisch geprüft, Texte und Zeichnungen bewertet Betty im Chat. */
 function probearbeit(C, H) {
@@ -765,6 +913,59 @@ function probearbeit(C, H) {
 
   startseite();
 }
+/* Umformen: Gleichungen Zeile für Zeile lösen. Jede Zeile wird sofort mit der vorherigen verglichen (gleichwertig?),
+   am Ende mit Probe. Kein Hin und Her im Chat nötig. */
+function umformenSeite(C, H) {
+  const { seite, $ } = H;
+  seite(C, `<div id="gl"></div><div class="karte"><p class="klein">Schreib in jede Zeile die nächste Gleichung und rechts daneben, was du gemacht hast (z. B. | −2x). Mit Enter wird die Zeile geprüft.</p><button type="button" class="haupt" id="kopieren">Ergebnisse in den Chat kopieren</button></div>`);
+  const liste = (C.aufgaben || [{ start: C.start, ziel: C.ziel, tipp: C.tipp }]).map((A, ai, alle) => {
+    const k = document.createElement("div"); k.className = "karte umformen"; $("gl").appendChild(k);
+    k.innerHTML = `<div class="nr">${alle.length > 1 ? "Gleichung " + (ai + 1) : "Gleichung"}</div>`;
+    if (A.frage) { const f = document.createElement("div"); f.className = "frage"; Tex.text(f, A.frage); k.appendChild(f); }
+    const s = document.createElement("div"); s.className = "startzeile"; Tex.formel(Term.texAntwort(A.start), s); k.appendChild(s);
+    const zeilenBox = document.createElement("div"); zeilenBox.className = "zeilen"; k.appendChild(zeilenBox);
+    const ende = document.createElement("div"); ende.className = "rueck"; ende.hidden = true; k.appendChild(ende);
+    const tippK = document.createElement("div"); tippK.className = "tipp"; tippK.hidden = true; k.appendChild(tippK);
+    const E = { A, zeilen: [], fertig: false, fehler: 0 };
+    const variable = (String(A.ziel || "").match(/^\s*([a-zA-Zα-ω])\s*=/) || [])[1] || (Term.norm(A.start).match(/[a-zA-Z]/) || ["x"])[0];
+    function neueZeile() {
+      const z = { el: document.createElement("div") }; z.el.className = "zeile-um"; zeilenBox.appendChild(z.el);
+      const links = document.createElement("div"); links.className = "gleichung"; z.el.appendChild(links);
+      z.feld = Tastatur.feld(links, { platzhalter: "nächste Zeile", tastatur: A.tastatur || C.tastatur, beiEnter: () => pruefe(z), vorschau: "auto" });
+      const rechts = document.createElement("div"); rechts.className = "befehl"; z.el.appendChild(rechts);
+      z.befehl = Tastatur.feld(rechts, { platzhalter: "| Umformung", tastatur: A.tastatur || C.tastatur, beiEnter: () => pruefe(z), vorschau: false });
+      z.marke = document.createElement("div"); z.marke.className = "erg"; z.el.appendChild(z.marke);
+      E.zeilen.push(z); z.feld.input.focus(); return z;
+    }
+    function pruefe(z) {
+      const roh = z.feld.wert(); if (!roh || E.fertig) return;
+      const i = E.zeilen.indexOf(z), vorher = i > 0 ? E.zeilen[i - 1].feld.wert() : A.start;
+      const ok = Term.aequivalent(roh, vorher) || Term.aequivalent(roh, A.start);
+      z.ok = ok; z.marke.className = "erg " + (ok ? "richtig" : "falsch");
+      const fertig = ok && new RegExp("^\\s*" + variable + "\\s*=\\s*[^a-zA-Z=]+$|^\\s*[^a-zA-Z=]+\\s*=\\s*" + variable + "\\s*$").test(Term.norm(roh).replace(/π|e(?![a-z])/g, "1"));
+      if (!ok) { E.fehler++; z.marke.textContent = "✗ Diese Zeile ist nicht gleichwertig zur Zeile davor. Prüf den Schritt."; if (E.fehler >= 2 && A.tipp) { Tex.text(tippK, A.tipp); tippK.hidden = false; } return; }
+      z.marke.textContent = "✓ gleichwertig";
+      if (fertig) {
+        E.fertig = true; E.zeilen.forEach(q => { q.feld.sperre(true); q.befehl.sperre(true); });
+        let probe = ""; try { const wertx = Term.zahl(Term.norm(roh).split("=").find(t => !t.includes(variable))); const s2 = Term.seiten(A.start, { [variable]: wertx }); if (s2) probe = " Probe: links " + z2(s2[0]) + ", rechts " + z2(s2[1]) + (Math.abs(s2[0] - s2[1]) < 1e-9 ? " ✓" : ""); } catch (e) {}
+        ende.hidden = false; ende.className = "rueck gut"; ende.textContent = "Fertig." + probe; return;
+      }
+      if (i === E.zeilen.length - 1) neueZeile();
+    }
+    const z2 = v => z(v, 4);
+    neueZeile();
+    return E;
+  });
+  $("kopieren").addEventListener("click", e => {
+    const zz = ["Meine Umformungen: " + (C.titel || "")];
+    liste.forEach((E, i) => {
+      zz.push((liste.length > 1 ? (i + 1) + ") " : "") + Term.lesbar(E.A.start));
+      E.zeilen.filter(q => q.feld.wert()).forEach(q => zz.push("   " + Term.lesbar(q.feld.wert()) + (q.befehl.wert() ? "   " + q.befehl.wert() : "") + (q.ok ? " ✓" : q.ok === false ? " ✗" : "")));
+      zz.push("   " + (E.fertig ? "fertig" : "noch nicht fertig") + (E.fehler ? ", " + E.fehler + " Fehlversuche" : ""));
+    });
+    kopiere(zz.join("\n"), e.currentTarget);
+  });
+}
 /* Seiten: Betty.funktionen, Betty.lernschritte, Betty.uebung, Betty.tastatur, Betty.zufall */
 const Betty = (() => {
   const $ = id => document.getElementById(id);
@@ -916,7 +1117,7 @@ const Betty = (() => {
     C.anzahlen.forEach((k, i) => $("knoepfe").appendChild(knopf(k === 1 ? "1-mal" : z(k, 0) + "-mal", () => ziehen(k), i === 0 ? "haupt" : "")));
     $("knoepfe").appendChild(knopf("Von vorn", neu)); beiGroesse(zeichne); neu();
   }
-  return { funktionen, lernschritte, uebung, tastatur, zufall, probearbeit: C => probearbeit(C, { seite, $, beiGroesse, rundPruefen }), version: "1.1.0" };
+  return { funktionen, lernschritte, uebung, tastatur, zufall, probearbeit: C => probearbeit(C, { seite, $, beiGroesse, rundPruefen }), baum: C => baumSeite(C, { seite, $, beiGroesse }), umformen: C => umformenSeite(C, { seite, $ }), version: "1.2.0" };
 })();
 Object.assign(window, { Betty, Term, Tex, z, pm, pib, koef, rund, winkel, wuerfel, muenze });
 })();
