@@ -27,11 +27,12 @@ function messen() {
   const xR = A.xMax - A.xMin, yR = A.yMax - A.yMin;
   W = Math.max(260, Math.round(svg.getBoundingClientRect().width || 640));
   V = { xMin: A.xMin, xMax: A.xMax, yMin: A.yMin, yMax: A.yMax };
+  const HM = Math.round(Math.min(480, Math.max(240, (window.innerHeight || 800) * 0.55)));
   if (A.gleicheEinheiten) {
     H = W * yR / xR;
-    if (H > 480) { H = 480; const n = W * yR / H, m = (A.xMin + A.xMax) / 2; V.xMin = m - n / 2; V.xMax = m + n / 2; }
+    if (H > HM) { H = HM; const n = W * yR / H, m = (A.xMin + A.xMax) / 2; V.xMin = m - n / 2; V.xMax = m + n / 2; }
     if (H < 220) { H = 220; const n = H * xR / W, m = (A.yMin + A.yMax) / 2; V.yMin = m - n / 2; V.yMax = m + n / 2; }
-  } else H = Math.min(460, Math.max(220, W * 0.66));
+  } else H = Math.min(HM, Math.max(220, W * 0.66));
   H = Math.round(H);
 }
 function teilung(r, p) { const roh = r / Math.max(2, p / 55), q = 10 ** Math.floor(Math.log10(roh)); for (const k of [1, 2, 5, 10]) if (k * q >= roh) return k * q; }

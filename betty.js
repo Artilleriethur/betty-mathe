@@ -1,4 +1,4 @@
-/* Betty-Mathe-Baukasten 1.0.0: Lernseiten, Mathe-Tastatur und Zeichnungen für den Mathe-Tutor Betty */
+/* Betty-Mathe-Baukasten 1.0.1: Lernseiten, Mathe-Tastatur und Zeichnungen für den Mathe-Tutor Betty */
 (() => {
 const BETTY_CSS = ":root{--ink:#1d2330;--muted:#5d6472;--line:#d9dce3;--grid:#eceef2;--axis:#2f3542;--panel:#f5f6f8;--f1:#1f5fbf;--f2:#d9730d;--f3:#13857a;--hilf:#7d8491;--gut:#13857a;--schlecht:#b3261e;color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 system-ui,-apple-system,\"Segoe UI\",Roboto,sans-serif}main{max-width:860px;margin:0 auto;padding:14px 16px 24px}h1{font-size:1.2rem;margin:0 0 4px}.auftrag{margin:0 0 12px;color:var(--muted)}button{font:inherit;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer}button.haupt{background:var(--f1);border-color:var(--f1);color:#fff}button:disabled{opacity:.45;cursor:default}.karte{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:0 0 12px}.knoepfe{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.feld input{width:100%;font:18px/1.4 ui-monospace,Consolas,monospace;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}.feld input:focus{outline:none;border-color:var(--f1)}.vorschau{margin-top:6px;padding:6px 10px;min-height:2.4em;background:var(--panel);border-radius:8px;overflow-x:auto;font-size:1.1rem}.vorschau.unfertig{color:var(--muted)}.vorschau .katex-display{margin:0;text-align:left}.tastatur{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin:8px 0 4px;padding:6px;background:var(--panel);border-radius:10px;max-width:460px}.taste{padding:0;min-height:44px;font-size:18px;border-radius:7px;touch-action:manipulation;user-select:none}.taste.steuer{background:#e9ebef;font-size:15px}.rueck{margin-top:8px;padding:8px 10px;border-radius:8px}.rueck.gut{background:#e6f4f1;color:#0b5c53}.rueck.schlecht{background:#fbeceb;color:#8c1d18}.tipp,.weg{margin-top:8px;padding:8px 10px;border-left:3px solid var(--f2);background:#fdf5ec;border-radius:0 8px 8px 0}.weg{border-left-color:var(--f3);background:#eef7f6}.ersatz textarea{width:100%;font:14px/1.4 ui-monospace,Consolas,monospace}.ersatz p{margin:8px 0 4px;color:var(--muted);font-size:.9rem}.klein{font-size:.9rem;color:var(--muted)}.nr{font-size:.8rem;font-weight:600;color:var(--muted);text-transform:none;margin-bottom:2px}h2{font-size:1.05rem;margin:0 0 6px}.frage{margin:0 0 8px}.optionen{display:grid;gap:6px;margin:4px 0}.optionen label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}.optionen input{width:18px;height:18px;accent-color:var(--f1)}.aufgabe{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.layout{display:grid;gap:14px}@media(min-width:760px){.layout{grid-template-columns:minmax(0,1fr) 340px;align-items:start}#figur{position:sticky;top:8px}}#figur{width:100%;display:block;border:1px solid var(--line);border-radius:8px;user-select:none}.tick{font-size:12px}.marke{font-size:14px;font-weight:600}.regler{display:block;margin:10px 0 0;font-weight:600}.regler input{width:100%;height:30px;accent-color:var(--f2)}.nav{justify-content:space-between}.punkte{display:flex;gap:6px;justify-content:center;margin-top:10px}.punkte button{width:14px;height:14px;padding:0;border-radius:50%;border:1.5px solid var(--hilf);background:#fff}.punkte button.fertig{background:var(--hilf)}.punkte button.an{background:var(--f1);border-color:var(--f1)}.layout.ohne{grid-template-columns:1fr}.panel{background:var(--panel);border-radius:8px;padding:10px 12px}.panel label{display:block;font-weight:600;margin:8px 0 0}.panel input[type=range]{width:100%;height:30px;accent-color:var(--f1)}.wert{float:right;font-weight:400;font-variant-numeric:tabular-nums}.term{margin:2px 0;font-size:1.05rem}.term b{font-size:.8rem;vertical-align:1px}.anzeige{margin:10px 0}.anzeige div{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding:4px 0;font-variant-numeric:tabular-nums}.stand{margin:10px 0;font-variant-numeric:tabular-nums}.diagramm{width:100%;display:block;border:1px solid var(--line);border-radius:8px}";
 /* Term: Eingaben lesen, als Formel anzeigen und mathematisch vergleichen */
@@ -272,7 +272,7 @@ async function kopiere(text, knopf) {
 function knopf(text, tu, klasse) { const b = document.createElement("button"); b.type = "button"; b.textContent = text; if (klasse) b.className = klasse; b.addEventListener("click", tu); return b; }
 function kasten(klasse) { const d = document.createElement("div"); d.className = klasse; d.hidden = true; return d; }
 function baueAufgabe(box, a, nr, geaendert) {
-  const st = { nr, versuche: 0, richtig: false, eingabe: "", weg: false };
+  const st = { nr, versuche: 0, richtig: false, eingabe: "", weg: false, frueher: [] };
   const q = document.createElement("div"); q.className = "frage"; Tex.text(q, a.frage); box.appendChild(q);
   let feld = null, wahl = null;
   if (a.optionen) {
@@ -291,7 +291,7 @@ function baueAufgabe(box, a, nr, geaendert) {
   function zeige(k, s) { if (s) { Tex.text(k, s); k.hidden = false; } }
   function melde(s, ok) { rueck.hidden = false; rueck.className = "rueck" + (ok === true ? " gut" : ok === false ? " schlecht" : ""); Tex.text(rueck, s); }
   function pruefe() {
-    let ok, roh;
+    let ok, roh; const vorher = st.eingabe;
     if (wahl) {
       const r = wahl.querySelector("input:checked"); if (!r) return melde("Wähle zuerst eine Antwort.");
       ok = +r.value === a.richtig; roh = String(r.value); st.eingabe = a.optionen[+r.value];
@@ -299,6 +299,7 @@ function baueAufgabe(box, a, nr, geaendert) {
       roh = feld.wert(); if (!roh) return melde("Tippe zuerst eine Antwort ein.");
       ok = Term.gleich(roh, a.antwort, a); st.eingabe = "$" + feld.tex() + "$";
     }
+    if (st.versuche && vorher && !st.richtig) st.frueher.push(vorher);
     st.versuche++; st.richtig = ok;
     const bekannt = !ok && (a.fehler || []).find(f => wahl ? String(f.antwort) === roh : Term.gleich(roh, String(f.antwort), {}));
     melde(ok ? (a.lob || "Richtig.") : bekannt ? bekannt.text : st.versuche === 1 && a.tipp ? "Noch nicht. Schau dir den Tipp an." : "Noch nicht richtig." + (a.weg ? " Du kannst dir jetzt den Lösungsweg ansehen." : ""), ok);
@@ -313,6 +314,7 @@ function ergebnisText(titel, liste) {
   liste.forEach(s => {
     let t = !s.versuche ? "nicht bearbeitet" : s.richtig ? "richtig" + (s.versuche > 1 ? " im " + s.versuche + ". Versuch" : "") + ": " + s.eingabe
       : "noch nicht richtig (" + s.versuche + (s.versuche > 1 ? " Versuche" : " Versuch") + "), zuletzt: " + s.eingabe;
+    if (s.frueher.length) t += " (vorher: " + s.frueher.join(", ") + ")";
     if (s.weg) t += " (Lösungsweg angesehen)";
     z.push((typeof s.nr === "number" ? s.nr + ") " : s.nr + ": ") + t);
   });
@@ -347,11 +349,12 @@ function messen() {
   const xR = A.xMax - A.xMin, yR = A.yMax - A.yMin;
   W = Math.max(260, Math.round(svg.getBoundingClientRect().width || 640));
   V = { xMin: A.xMin, xMax: A.xMax, yMin: A.yMin, yMax: A.yMax };
+  const HM = Math.round(Math.min(480, Math.max(240, (window.innerHeight || 800) * 0.55)));
   if (A.gleicheEinheiten) {
     H = W * yR / xR;
-    if (H > 480) { H = 480; const n = W * yR / H, m = (A.xMin + A.xMax) / 2; V.xMin = m - n / 2; V.xMax = m + n / 2; }
+    if (H > HM) { H = HM; const n = W * yR / H, m = (A.xMin + A.xMax) / 2; V.xMin = m - n / 2; V.xMax = m + n / 2; }
     if (H < 220) { H = 220; const n = H * xR / W, m = (A.yMin + A.yMax) / 2; V.yMin = m - n / 2; V.yMax = m + n / 2; }
-  } else H = Math.min(460, Math.max(220, W * 0.66));
+  } else H = Math.min(HM, Math.max(220, W * 0.66));
   H = Math.round(H);
 }
 function teilung(r, p) { const roh = r / Math.max(2, p / 55), q = 10 ** Math.floor(Math.log10(roh)); for (const k of [1, 2, 5, 10]) if (k * q >= roh) return k * q; }
@@ -471,7 +474,7 @@ const Betty = (() => {
     C.schritte.forEach((s, i) => {
       const c = document.createElement("div"); c.className = "karte";
       c.innerHTML = `<div class="nr">Schritt ${i + 1} von ${n}</div><h2></h2><div class="text"></div>`;
-      c.querySelector("h2").textContent = s.titel || ""; Tex.text(c.querySelector(".text"), s.text);
+      c.querySelector("h2").textContent = (s.titel || "").replace(/^\s*(Schritt\s*)?\d+\s*[.:)]\s*/i, ""); Tex.text(c.querySelector(".text"), s.text);
       (s.regler || []).forEach(r => regler(c, r, () => zeichne()));
       if (s.frage) { const f = document.createElement("div"); f.className = "aufgabe"; c.appendChild(f); erg.push(baueAufgabe(f, s.frage, "Schritt " + (i + 1), () => {})); }
       $("schritte").appendChild(c); karten.push(c);

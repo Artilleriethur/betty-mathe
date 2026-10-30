@@ -66,7 +66,7 @@ const Betty = (() => {
     C.schritte.forEach((s, i) => {
       const c = document.createElement("div"); c.className = "karte";
       c.innerHTML = `<div class="nr">Schritt ${i + 1} von ${n}</div><h2></h2><div class="text"></div>`;
-      c.querySelector("h2").textContent = s.titel || ""; Tex.text(c.querySelector(".text"), s.text);
+      c.querySelector("h2").textContent = (s.titel || "").replace(/^\s*(Schritt\s*)?\d+\s*[.:)]\s*/i, ""); Tex.text(c.querySelector(".text"), s.text);
       (s.regler || []).forEach(r => regler(c, r, () => zeichne()));
       if (s.frage) { const f = document.createElement("div"); f.className = "aufgabe"; c.appendChild(f); erg.push(baueAufgabe(f, s.frage, "Schritt " + (i + 1), () => {})); }
       $("schritte").appendChild(c); karten.push(c);
