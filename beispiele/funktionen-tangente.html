@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@main/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Tangente an die Sinuskurve",
+  auftrag: "Zieh den Punkt P über die Kurve. Wo ist die Tangente am steilsten, wo waagerecht?",
+  ansicht: { xMin: -0.5, xMax: 6.8, yMin: -2, yMax: 2, xPi: true },
+  parameter: [{ name: "x0", anzeige: "Stelle x₀", min: 0, max: 2 * Math.PI, schritt: Math.PI / 12, start: Math.PI / 6, pi: true, ziehen: { funktion: 0, text: "P" } }],
+  funktionen: [{ f: x => Math.sin(x), term: p => "f(x) = sin(x)" }],
+  extras: (g, p) => g.gerade(p.x0, Math.sin(p.x0), Math.cos(p.x0), { farbe: "var(--f2)" }),
+  anzeige: p => [["Anstieg der Tangente", z(Math.cos(p.x0), 2)], ["P", `(${pib(p.x0)} | ${z(Math.sin(p.x0), 2)})`]],
+};
+if (window.Betty) Betty.funktionen(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>
