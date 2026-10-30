@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@1/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Vom Einheitskreis zur Sinuskurve",
+  auftrag: "Geh Schritt für Schritt vor und benutze den Regler. Die Zeichnung wächst mit.",
+  ansicht: { xMin: -2.7, xMax: 6.7, yMin: -1.3, yMax: 1.3, gleicheEinheiten: true, xPi: true, skalaX: [0, 7] },
+  regler: [{ name: "a", anzeige: "Drehwinkel α", min: 0, max: 2 * Math.PI, schritt: Math.PI / 12, start: Math.PI / 4, pi: true }],
+  schritte: [
+    { titel: "Der Einheitskreis",
+      text: "Links siehst du einen Kreis mit Radius 1. Der Punkt P dreht sich gegen den Uhrzeigersinn. Stell mit dem Regler verschiedene Winkel ein.",
+      zeichne: (g, p, neu) => { const M = -1.5; g.kreis(M, 0, 1, { farbe: "var(--hilf)", breite: 1.5 }); g.linie(M - 1.15, 0, M + 1.15, 0, { breite: 1 });
+        g.bogen(M, 0, 0.3, 0, p.a, { farbe: "var(--f2)", breite: 2 }); g.linie(M, 0, M + Math.cos(p.a), Math.sin(p.a), { farbe: "var(--ink)", breite: 2 });
+        g.punkt(M + Math.cos(p.a), Math.sin(p.a), { text: "P", farbe: "var(--f1)" }); } },
+    { titel: "Die Höhe von P",
+      text: "Die orange Strecke zeigt, wie hoch P über der waagerechten Linie liegt. Diese Höhe ist $sin(α)$.",
+      zeichne: (g, p, neu) => { const M = -1.5; g.linie(M + Math.cos(p.a), 0, M + Math.cos(p.a), Math.sin(p.a), { farbe: "var(--f2)", breite: 3.5 }); },
+      frage: { frage: "Stell $α = π/2$ ein. Wie hoch liegt P dann?", antwort: "1", tipp: "P steht dann ganz oben auf dem Kreis. Der Radius ist 1.", weg: "$sin(π/2) = 1$" } },
+    { titel: "Die Höhe nach rechts tragen",
+      text: "Jetzt tragen wir die Höhe rechts im Koordinatensystem ab: nach rechts den Winkel α, nach oben die Höhe.",
+      zeichne: (g, p, neu) => { const M = -1.5; g.linie(M + Math.cos(p.a), Math.sin(p.a), p.a, Math.sin(p.a), { gestrichelt: true });
+        g.linie(p.a, 0, p.a, Math.sin(p.a), { farbe: "var(--f2)", breite: 3.5 }); g.punkt(p.a, Math.sin(p.a), { farbe: "var(--f2)" }); } },
+    { titel: "Die Sinuskurve entsteht",
+      text: "Dreh P langsam von 0 bis $2π$. Die blaue Kurve zeigt alle Höhen bis zum eingestellten Winkel.",
+      zeichne: (g, p, neu) => g.kurve(x => Math.sin(x), { von: 0, bis: p.a }),
+      frage: { frage: "Welche Höhe hat P bei $α = 3π/2$?", antwort: "-1", tipp: "Bei $3π/2$ steht P ganz unten.", weg: "$sin(3π/2) = −1$" } },
+  ],
+};
+if (window.Betty) Betty.lernschritte(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>

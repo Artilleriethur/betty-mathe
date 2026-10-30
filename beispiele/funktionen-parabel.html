@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@1/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Parabel strecken und verschieben",
+  auftrag: "Verändere a, d und e nacheinander. Beobachte, was jeder Regler mit der Parabel macht und wo der Scheitelpunkt S liegt.",
+  ansicht: { xMin: -6, xMax: 6, yMin: -5, yMax: 8, gleicheEinheiten: true },
+  parameter: [
+    { name: "a", min: -3, max: 3, schritt: 0.1, start: 1 },
+    { name: "d", min: -4, max: 4, schritt: 0.5, start: 0 },
+    { name: "e", min: -4, max: 4, schritt: 0.5, start: 0 },
+  ],
+  punkte: [],
+  funktionen: [
+    { f: (x, p) => p.a * (x + p.d) ** 2 + p.e, farbe: "var(--f1)",
+      term: p => `f(x) = ${koef(p.a, p.d !== 0)}${p.d === 0 ? "x²" : `(x${pm(p.d)})²`}${pm(p.e)}` },
+  ],
+  hintergrund: (g, p) => {},
+  extras: (g, p) => g.punkt(-p.d, p.e, { farbe: "var(--f2)", text: "S" }),
+  anzeige: p => [
+    ["Scheitelpunkt", `S(${z(-p.d)} | ${z(p.e)})`],
+    ["Öffnung", p.a > 0 ? "nach oben" : p.a < 0 ? "nach unten" : "keine Parabel (a = 0)"],
+  ],
+};
+if (window.Betty) Betty.funktionen(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@1/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Antwort eintippen",
+  auftrag: "Tippe deine Antwort ein. Dann auf „In den Chat kopieren“ tippen und die Antwort im Chat einfügen.",
+  felder: [{ name: "Antwort" }],
+};
+if (window.Betty) Betty.tastatur(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>

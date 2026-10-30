@@ -1,0 +1,54 @@
+:root{--ink:#1d2330;--muted:#5d6472;--line:#d9dce3;--grid:#eceef2;--axis:#2f3542;--panel:#f5f6f8;--f1:#1f5fbf;--f2:#d9730d;--f3:#13857a;--hilf:#7d8491;--gut:#13857a;--schlecht:#b3261e;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:14px 16px 24px}
+h1{font-size:1.2rem;margin:0 0 4px}
+.auftrag{margin:0 0 12px;color:var(--muted)}
+button{font:inherit;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer}
+button.haupt{background:var(--f1);border-color:var(--f1);color:#fff}
+button:disabled{opacity:.45;cursor:default}
+.karte{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:0 0 12px}
+.knoepfe{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.feld input{width:100%;font:18px/1.4 ui-monospace,Consolas,monospace;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+.feld input:focus{outline:none;border-color:var(--f1)}
+.vorschau{margin-top:6px;padding:6px 10px;min-height:2.4em;background:var(--panel);border-radius:8px;overflow-x:auto;font-size:1.1rem}
+.vorschau.unfertig{color:var(--muted)}
+.vorschau .katex-display{margin:0;text-align:left}
+.tastatur{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin:8px 0 4px;padding:6px;background:var(--panel);border-radius:10px;max-width:460px}
+.taste{padding:0;min-height:44px;font-size:18px;border-radius:7px;touch-action:manipulation;user-select:none}
+.taste.steuer{background:#e9ebef;font-size:15px}
+.rueck{margin-top:8px;padding:8px 10px;border-radius:8px}
+.rueck.gut{background:#e6f4f1;color:#0b5c53}
+.rueck.schlecht{background:#fbeceb;color:#8c1d18}
+.tipp,.weg{margin-top:8px;padding:8px 10px;border-left:3px solid var(--f2);background:#fdf5ec;border-radius:0 8px 8px 0}
+.weg{border-left-color:var(--f3);background:#eef7f6}
+.ersatz textarea{width:100%;font:14px/1.4 ui-monospace,Consolas,monospace}
+.ersatz p{margin:8px 0 4px;color:var(--muted);font-size:.9rem}
+.klein{font-size:.9rem;color:var(--muted)}
+.nr{font-size:.8rem;font-weight:600;color:var(--muted);text-transform:none;margin-bottom:2px}
+h2{font-size:1.05rem;margin:0 0 6px}
+.frage{margin:0 0 8px}
+.optionen{display:grid;gap:6px;margin:4px 0}
+.optionen label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}
+.optionen input{width:18px;height:18px;accent-color:var(--f1)}
+.aufgabe{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}
+.layout{display:grid;gap:14px}
+@media(min-width:760px){.layout{grid-template-columns:minmax(0,1fr) 340px;align-items:start}#figur{position:sticky;top:8px}}
+#figur{width:100%;display:block;border:1px solid var(--line);border-radius:8px;user-select:none}
+.tick{font-size:12px}.marke{font-size:14px;font-weight:600}
+.regler{display:block;margin:10px 0 0;font-weight:600}
+.regler input{width:100%;height:30px;accent-color:var(--f2)}
+.nav{justify-content:space-between}
+.punkte{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.punkte button{width:14px;height:14px;padding:0;border-radius:50%;border:1.5px solid var(--hilf);background:#fff}
+.punkte button.fertig{background:var(--hilf)}
+.punkte button.an{background:var(--f1);border-color:var(--f1)}
+.layout.ohne{grid-template-columns:1fr}
+.panel{background:var(--panel);border-radius:8px;padding:10px 12px}
+.panel label{display:block;font-weight:600;margin:8px 0 0}
+.panel input[type=range]{width:100%;height:30px;accent-color:var(--f1)}
+.wert{float:right;font-weight:400;font-variant-numeric:tabular-nums}
+.term{margin:2px 0;font-size:1.05rem}.term b{font-size:.8rem;vertical-align:1px}
+.anzeige{margin:10px 0}.anzeige div{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding:4px 0;font-variant-numeric:tabular-nums}
+.stand{margin:10px 0;font-variant-numeric:tabular-nums}
+.diagramm{width:100%;display:block;border:1px solid var(--line);border-radius:8px}

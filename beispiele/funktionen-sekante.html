@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@1/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Von der Sekante zur Tangente",
+  auftrag: "Mach h Schritt für Schritt kleiner. Welchem Wert nähert sich der Anstieg der Sekante? Den Punkt P kannst du auf dem Graphen verschieben.",
+  ansicht: { xMin: -1.5, xMax: 4, yMin: -1, yMax: 9, gleicheEinheiten: false },
+  parameter: [
+    { name: "x0", anzeige: "Stelle x₀", min: -1, max: 2.5, schritt: 0.1, start: 1, ziehen: { funktion: 0, text: "P" } },
+    { name: "h", anzeige: "Abstand h", min: 0.01, max: 2, schritt: 0.01, start: 1.5 },
+  ],
+  funktionen: [{ f: x => x * x, farbe: "var(--f1)", term: () => "f(x) = x²" }],
+  extras: (g, p) => {
+    const f = x => x * x, x1 = p.x0 + p.h, ms = (f(x1) - f(p.x0)) / p.h;
+    g.gerade(p.x0, f(p.x0), 2 * p.x0, { farbe: "var(--hilf)", gestrichelt: true });
+    g.gerade(p.x0, f(p.x0), ms, { farbe: "var(--f2)" });
+    g.punkt(x1, f(x1), { farbe: "var(--f2)", text: "Q" });
+  },
+  anzeige: p => [
+    ["Anstieg der Sekante PQ", z(((p.x0 + p.h) ** 2 - p.x0 ** 2) / p.h, 3)],
+    ["gestrichelt", "Tangente in P"],
+  ],
+};
+if (window.Betty) Betty.funktionen(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>

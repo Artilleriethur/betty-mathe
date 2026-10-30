@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@1/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Den Parameter b bestimmen",
+  auftrag: "Löse die Aufgaben nacheinander. Nach einem Fehlversuch bekommst du einen Tipp, nach zwei Versuchen kannst du dir den Lösungsweg ansehen.",
+  aufgaben: [
+    { frage: "Eine ganze Welle ist $4π$ breit. Berechne $b$ mit $b = 2π/p$.", antwort: "1/2",
+      tipp: "Setz $p = 4π$ ein. Dann kürzt sich π weg.", weg: "$b = 2π/(4π) = 2/4 = 1/2$",
+      fehler: [{ antwort: "2", text: "Du hast den Bruch umgedreht. Oben steht $2π$, unten die Wellenbreite $p$." }] },
+    { frage: "Wie breit ist eine ganze Welle von $f(x) = sin(3x)$?", antwort: "2π/3", runden: 2,
+      tipp: "Stell die Formel um: $p = 2π/b$.", weg: "$p = 2π/3$, also ungefähr 2,09." },
+    { frage: "Welche Funktion hat die breitesten Wellen?", optionen: ["$sin(2x)$", "$sin(x)$", "$sin((1/2)x)$"], richtig: 2,
+      tipp: "Je kleiner b ist, desto langsamer läuft die Welle durch.", weg: "Bei $b = 1/2$ ist $p = 2π/(1/2) = 4π$. Das ist die größte Breite." },
+    { frage: "Gib alle Nullstellen von $f(x) = sin(x)$ zwischen 0 und $2π$ an. Trenne sie mit einem Semikolon.", antwort: "0; π; 2π",
+      tipp: "Wo hat der Punkt auf dem Einheitskreis die Höhe 0?", weg: "$x_1 = 0; x_2 = π; x_3 = 2π$" },
+  ],
+};
+if (window.Betty) Betty.uebung(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>

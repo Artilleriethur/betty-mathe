@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@1/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "b aus dem Graphen bestimmen",
+  auftrag: "Geh Schritt für Schritt vor. Die Zeichnung wächst mit.",
+  ansicht: { xMin: -0.6, xMax: 17, yMin: -1.6, yMax: 1.9, xPi: true },
+  schritte: [
+    { titel: "Den Graphen anschauen",
+      text: "Das ist der Graph von $f(x) = sin(b·x)$. Welche Zahl steckt in $b$? Das finden wir in drei Schritten heraus.",
+      zeichne: (g, p, neu) => g.kurve(x => Math.sin(x / 2)) },
+    { titel: "Zwei Hochpunkte nebeneinander",
+      text: "A und B sind zwei Hochpunkte, die direkt nebeneinander liegen. Lies ihre x-Werte an der Achse ab.",
+      zeichne: (g, p, neu) => { [[Math.PI, "A"], [5 * Math.PI, "B"]].forEach(([x, n]) => { g.linie(x, 0, x, 1, { gestrichelt: true }); g.punkt(x, 1, { text: n, farbe: "var(--f2)" }); }); },
+      frage: { frage: "Bei welchem x liegt B?", antwort: "5π", tipp: "Die Zahlen an der x-Achse sind Vielfache von π.", weg: "B liegt bei $x = 5π$, A bei $x = π$." } },
+    { titel: "Eine ganze Welle: p",
+      text: "Von A bis B passt genau eine ganze Welle. Ihre Breite heißt $p$. Rechne: rechter x-Wert minus linker x-Wert.",
+      zeichne: (g, p, neu) => { g.pfeil(Math.PI, 1.45, 5 * Math.PI, 1.45, { farbe: "var(--f3)" }); g.pfeil(5 * Math.PI, 1.45, Math.PI, 1.45, { farbe: "var(--f3)" }); g.text(3 * Math.PI, 1.55, "p", { farbe: "var(--f3)", anker: "middle", dy: -4 }); },
+      frage: { frage: "Wie groß ist $p$?", antwort: "4π", tipp: "$p = 5π − π$", weg: "$p = 5π − π = 4π$",
+        fehler: [{ antwort: "5π", text: "Das ist nur der x-Wert von B. Zieh noch den x-Wert von A ab." }] } },
+    { titel: "b ausrechnen",
+      text: "Für die Breite einer ganzen Welle gilt $p = 2π/b$. Umgestellt: $b = 2π/p$.",
+      frage: { frage: "Berechne $b$.", antwort: "1/2", tipp: "Setz $p = 4π$ ein und kürze π.", weg: "$b = 2π/(4π) = 2/4 = 1/2$",
+        fehler: [{ antwort: "2", text: "Du hast den Bruch umgedreht. Oben steht $2π$, unten $p$." }] } },
+    { titel: "Probe mit dem Regler",
+      text: "Stell $b$ mit dem Regler ein. Bei welchem Wert liegt die orange Kurve genau auf der blauen?",
+      regler: [{ name: "b", min: 0.25, max: 3, schritt: 0.25, start: 1 }],
+      zeichne: (g, p, neu) => { if (neu) g.kurve(x => Math.sin(p.b * x), { farbe: "var(--f2)", gestrichelt: true }); } },
+  ],
+};
+if (window.Betty) Betty.lernschritte(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>

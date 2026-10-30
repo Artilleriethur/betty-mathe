@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@1/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Winkelsumme im Dreieck",
+  auftrag: "Zieh die Ecken A, B und C an verschiedene Stellen. Was passiert mit den einzelnen Winkeln und was mit ihrer Summe?",
+  ansicht: { xMin: -1, xMax: 9, yMin: -1, yMax: 7, gleicheEinheiten: true, achsen: false },
+  parameter: [],
+  punkte: [{ name: "A", x: 0, y: 0 }, { name: "B", x: 7, y: 0.5 }, { name: "C", x: 3, y: 5, farbe: "var(--f2)" }],
+  funktionen: [],
+  hintergrund: (g, p) => g.polygon([[p.A.x, p.A.y], [p.B.x, p.B.y], [p.C.x, p.C.y]], { farbe: "var(--f1)", deckkraft: 0.1, rand: "var(--f1)" }),
+  anzeige: p => {
+    const a = winkel(p.B, p.A, p.C), b = winkel(p.A, p.B, p.C), c = winkel(p.A, p.C, p.B);
+    return [["α (bei A)", z(a, 1) + "°"], ["β (bei B)", z(b, 1) + "°"], ["γ (bei C)", z(c, 1) + "°"], ["α + β + γ", z(a + b + c, 1) + "°"]];
+  },
+};
+if (window.Betty) Betty.funktionen(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>

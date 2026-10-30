@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@1/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Sinusfunktion strecken und verschieben",
+  auftrag: "Verändere einen Regler nach dem anderen und vergleiche mit der gestrichelten Kurve y = sin(x). Was ändert a, was ändert b?",
+  ansicht: { xMin: -1, xMax: 7, yMin: -3.5, yMax: 3.5, xPi: true },
+  parameter: [
+    { name: "a", min: -3, max: 3, schritt: 0.1, start: 1 },
+    { name: "b", min: 0.5, max: 4, schritt: 0.5, start: 1 },
+    { name: "c", min: -3, max: 3, schritt: 0.1, start: 0 },
+    { name: "d", min: -2, max: 2, schritt: 0.1, start: 0 },
+  ],
+  funktionen: [
+    { f: x => Math.sin(x), farbe: "var(--hilf)", breite: 1.5, gestrichelt: true },
+    { f: (x, p) => p.a * Math.sin(p.b * (x + p.c)) + p.d, farbe: "var(--f1)",
+      term: p => `f(x) = ${koef(p.a, true)}sin(${koef(p.b)}${p.c === 0 ? "x" : `(x${pm(p.c)})`})${pm(p.d)}` },
+  ],
+  anzeige: p => [["Amplitude |a|", z(Math.abs(p.a))], ["Periode 2π : b", z(2 * Math.PI / p.b)]],
+};
+if (window.Betty) Betty.funktionen(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>
