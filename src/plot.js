@@ -34,7 +34,7 @@ function marke(s) {
 const px = x => (x - V.xMin) / (V.xMax - V.xMin) * W, py = y => H - (y - V.yMin) / (V.yMax - V.yMin) * H;
 function messen() {
   const xR = A.xMax - A.xMin, yR = A.yMax - A.yMin;
-  W = Math.max(260, Math.round(svg.getBoundingClientRect().width || 640));
+  W = Math.max(A.hoehe ? 120 : 260, Math.round(svg.getBoundingClientRect().width || 640));
   V = { xMin: A.xMin, xMax: A.xMax, yMin: A.yMin, yMax: A.yMax };
   const HM = Math.round(Math.min(480, Math.max(240, (window.innerHeight || 800) * 0.55)));
   if (A.gleicheEinheiten) {
@@ -42,13 +42,18 @@ function messen() {
     if (H > HM) { H = HM; const n = W * yR / H, m = (A.xMin + A.xMax) / 2; V.xMin = m - n / 2; V.xMax = m + n / 2; }
     if (H < 220) { H = 220; const n = H * xR / W, m = (A.yMin + A.yMax) / 2; V.yMin = m - n / 2; V.yMax = m + n / 2; }
   } else H = Math.min(HM, Math.max(220, W * 0.66));
+  if (A.hoehe) { // feste Höhe für kleine Graphen (Zuordnen, Lernzettel)
+    H = A.hoehe; V = { xMin: A.xMin, xMax: A.xMax, yMin: A.yMin, yMax: A.yMax };
+    if (A.gleicheEinheiten) { const n = W * yR / H; if (n >= xR) { const m = (A.xMin + A.xMax) / 2; V.xMin = m - n / 2; V.xMax = m + n / 2; } else { const n2 = H * xR / W, m = (A.yMin + A.yMax) / 2; V.yMin = m - n2 / 2; V.yMax = m + n2 / 2; } }
+  }
   H = Math.round(H);
 }
 function teilung(r, p) { const roh = r / Math.max(2, p / 55), q = 10 ** Math.floor(Math.log10(roh)); for (const k of [1, 2, 5, 10]) if (k * q >= roh) return k * q; }
 function piText(k) { const s = k < 0 ? "−" : ""; k = Math.abs(k); return k % 2 === 0 ? s + (k === 2 ? "" : k / 2) + "π" : s + (k === 1 ? "" : k) + "π/2"; }
 function spitze(x, y, w, f) { const l = 9, b = 4.5, c = Math.cos(w), s = Math.sin(w); el("polygon", { points: `${x},${y} ${x - l * c - b * s},${y - l * s + b * c} ${x - l * c + b * s},${y - l * s - b * c}`, fill: f }); }
 function achsen() {
-  let sx = teilung(V.xMax - V.xMin, W), sy = teilung(V.yMax - V.yMin, H);
+  const dicht = A.hoehe && A.hoehe < 200 ? 2 : 1; // kleine Graphen: mehr Skalenstriche
+  let sx = teilung(V.xMax - V.xMin, W * dicht), sy = teilung(V.yMax - V.yMin, H * dicht);
   if (A.xPi) sx = W / (V.xMax - V.xMin) * Math.PI / 2 >= 45 ? Math.PI / 2 : Math.PI; else if (A.gleicheEinheiten) sx = sy = Math.max(sx, sy);
   const xs = [], ys = [];
   const sk = A.skalaX || [-Infinity, Infinity];

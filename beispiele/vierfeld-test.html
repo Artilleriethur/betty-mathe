@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@main/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Wie zuverlässig ist ein positiver Test?",
+  auftrag: "Von 1000 Personen sind 10 krank. Der Test erkennt 9 der 10 Kranken. Bei 10 % der Gesunden zeigt er fälschlich „positiv“. Ergänze die Tafel und den Baum.",
+  a: ["krank", "gesund"], b: ["Test positiv", "Test negativ"],
+  kurz: { a: ["K", "K̄"], b: ["T", "T̄"] },
+  stufeA: "Gesundheit", stufeB: "Test",
+  anzahl: [[9, 1], [99, 891]],
+  offen: ["21", "s1"], baumOffen: ["K̄-T"],
+  fragen: [
+    { frage: "Jemand hat einen positiven Test. Mit welcher Wahrscheinlichkeit ist die Person wirklich krank?", antwort: "9/108", runden: 3,
+      tipp: "Dreh den Baum um: erst T, dann K. Gesucht ist $P_T(K)$.",
+      fehler: [{ antwort: "9/10", text: "Das ist $P_K(T)$, also wie sicher der Test Kranke erkennt. Gesucht ist umgekehrt $P_T(K)$." }] },
+  ],
+};
+if (window.Betty) Betty.vierfeld(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>

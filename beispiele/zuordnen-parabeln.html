@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@main/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Welcher Graph gehört zu welchem Term?",
+  auftrag: "Ordne jedem Funktionsterm seinen Graphen zu. Ein Graph bleibt übrig.",
+  links: "Term", rechts: "Graph",
+  ansicht: { xMin: -4, xMax: 4, yMin: -3, yMax: 5, hoehe: 120 },
+  paare: [
+    { links: "$f(x) = (x-2)^2$", rechts: { f: x => (x - 2) ** 2 } },
+    { links: "$g(x) = (x+2)^2 - 1$", rechts: { f: x => (x + 2) ** 2 - 1 } },
+    { links: "$h(x) = -x^2 + 3$", rechts: { f: x => -x * x + 3 } },
+    { links: "$k(x) = 0,5x^2 - 2$", rechts: { f: x => 0.5 * x * x - 2 } },
+  ],
+  extra: [{ f: x => 2 * (x - 1) ** 2 }],
+};
+if (window.Betty) Betty.zuordnen(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>

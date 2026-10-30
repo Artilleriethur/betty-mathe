@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@main/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Finde den Fehler",
+  auftrag: "In jeder Rechnung steckt genau ein Fehler. Tippe die erste falsche Zeile an und erkläre, was schiefgegangen ist.",
+  tastatur: "algebra",
+  aufgaben: [
+    { aufgabe: "Löse $3(x-2) = 2x+5$.",
+      zeilen: ["$3(x-2) = 2x+5$", "$3x - 2 = 2x + 5$   | $-2x$", "$x - 2 = 5$   | $+2$", "$x = 7$"],
+      fehler: 1, richtig: "3x-6=2x+5",
+      tipp: "Multipliziere jeden Summanden in der Klammer mit 3.",
+      erklaerung: "Beim Ausmultiplizieren muss auch die 2 mit 3 multipliziert werden: $3(x-2) = 3x - 6$. Dann ist $x = 11$." },
+    { aufgabe: "Vereinfache $(2x^2)^3 · x$.",
+      zeilen: ["$(2x^2)^3 · x$", "$= 2x^6 · x$", "$= 2x^7$"],
+      fehler: 1, richtig: "8x^6·x",
+      tipp: "Auch der Faktor 2 wird hoch 3 genommen.",
+      erklaerung: "$(2x^2)^3 = 2^3 · x^6 = 8x^6$. Das Ergebnis ist $8x^7$." },
+  ],
+};
+if (window.Betty) Betty.fehlersuche(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>

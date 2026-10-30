@@ -17,7 +17,7 @@ const Tex = {
       if (t[0] !== "$") { el.insertAdjacentHTML("beforeend", t); return; }
       const gross = t.startsWith("$$"), e = document.createElement(gross ? "div" : "span"), roh = t.slice(gross ? 2 : 1, gross ? -2 : -1);
       let tex = roh;
-      if (!roh.includes("\\")) { try { tex = Term.texAntwort(roh); } catch (x) {
+      if (!roh.includes("\\")) { try { tex = (/^\s*\+/.test(roh) ? "+" : "") + Term.texAntwort(roh); } catch (x) {
         tex = roh.replace(/(^|[^a-zA-Z\\])(sin|cos|tan|ln|lg|log|lim)(?![a-zA-Z])/g, "$1\\$2 ").replace(/·/g, "\\cdot ").replace(/°/g, "^{\\circ}");
         const m = roh.match(/^(.*?)\s*(=|≈|<|>|≤|≥)\s*$/); if (m) { try { tex = Term.texAntwort(m[1]) + { "=": "=", "≈": "\\approx", "<": "<", ">": ">", "≤": "\\le", "≥": "\\ge" }[m[2]]; } catch (y) {} } } }
       Tex.formel(tex, e, gross); el.appendChild(e);
@@ -137,7 +137,7 @@ const Tastatur = (() => {
     aktiv = obj; if (neu) { cfgAktiv = obj.k; liste = ebenen(obj.k); ebene = Math.max(0, liste.findIndex(e => e.name === obj.k.start)); }
     offen = obj.offen;
     if (tippen) obj.input.inputMode = offen ? "none" : "text";
-    w.after(box); box.hidden = false; baue();
+    (obj.o.tastaturNach || w).after(box); box.hidden = false; baue();
   }
   // feld(eltern, { platzhalter, beiEnter, beiEingabe, tastatur, mehrzeilig, vorschau })
   function feld(eltern, o = {}) {

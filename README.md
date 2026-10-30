@@ -22,6 +22,10 @@ Betty.lernschritte(CONFIG);
 | `Betty.probearbeit` | Probe-Klassenarbeit oder Probetest: Teil A/B, Punkte, Uhr, Auswahlaufgaben, Abgabe mit automatischer Prüfung |
 | `Betty.baum` | Baumdiagramm: Pfade antippen, Pfadregeln mit Brüchen, Lückenäste; dazu `g.baum` für Zeichnungen |
 | `Betty.umformen` | Gleichungen Zeile für Zeile lösen, jede Zeile wird auf Gleichwertigkeit geprüft, am Ende Probe |
+| `Betty.zuordnen` | Paare antippen: Term ↔ Graph, Begriff ↔ Beispiel, mit Ablenkern und Prüfen |
+| `Betty.fehlersuche` | vorgerechnete Lösung mit einem Fehler: falsche Zeile finden, erklären, verbessern |
+| `Betty.vierfeld` | Vierfeldertafel und Baum gekoppelt, Baum umdrehbar, bedingte Wahrscheinlichkeiten, Lücken |
+| `Betty.lernzettel` | Lernzettel zum Drucken (A4, zweispaltig) mit Merksätzen, Formeln, Skizzen und Ich-kann-Liste |
 | `Betty.tastatur` | Formel eintippen und in den Chat kopieren |
 | `Betty.zufall` | Zufallsexperimente mit relativen Häufigkeiten |
 

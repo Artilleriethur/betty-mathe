@@ -7,7 +7,7 @@ const Bruch = (() => {
     s = String(s ?? "").replace(/\s/g, "").replace(/[−–]/g, "-");
     let m = s.match(/^(-?\d+)\/(\d+)$/); if (m) return { z: +m[1], n: +m[2], dez: false };
     m = s.match(/^(-?\d+(?:[.,]\d+)?)%$/); if (m) { const d = (m[1].split(/[.,]/)[1] || "").length; return kurz({ z: Math.round(parseFloat(m[1].replace(",", ".")) * 10 ** d), n: 100 * 10 ** d, dez: true }); }
-    m = s.match(/^-?\d+(?:[.,](\d+))?$/); if (m) { const d = (m[1] || "").length; return kurz({ z: Math.round(parseFloat(s.replace(",", ".")) * 10 ** d), n: 10 ** d, dez: true }); }
+    m = s.match(/^-?\d+(?:[.,](\d+))?$/); if (m) { const d = (m[1] || "").length; return kurz({ z: Math.round(parseFloat(s.replace(",", ".")) * 10 ** d), n: 10 ** d, dez: d > 0 }); }
     let v = NaN; try { v = Term.zahl(s); } catch (e) {}
     return { z: v, n: 1, dez: true, roh: true };
   }

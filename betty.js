@@ -1,6 +1,6 @@
-/* Betty-Mathe-Baukasten 1.2.0: Lernseiten, Mathe-Tastatur und Zeichnungen für den Mathe-Tutor Betty */
+/* Betty-Mathe-Baukasten 1.3.0: Lernseiten, Mathe-Tastatur und Zeichnungen für den Mathe-Tutor Betty */
 (() => {
-const BETTY_CSS = ":root{--ink:#1d2330;--muted:#5d6472;--line:#d9dce3;--grid:#eceef2;--axis:#2f3542;--panel:#f5f6f8;--f1:#1f5fbf;--f2:#d9730d;--f3:#13857a;--hilf:#7d8491;--gut:#13857a;--schlecht:#b3261e;color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 system-ui,-apple-system,\"Segoe UI\",Roboto,sans-serif}main{max-width:860px;margin:0 auto;padding:14px 16px 24px}h1{font-size:1.2rem;margin:0 0 4px}.auftrag{margin:0 0 12px;color:var(--muted)}button{font:inherit;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer}button.haupt{background:var(--f1);border-color:var(--f1);color:#fff}button:disabled{opacity:.45;cursor:default}.karte{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:0 0 12px}.knoepfe{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.feld input{width:100%;font:18px/1.4 ui-monospace,Consolas,monospace;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}.feld input:focus{outline:none;border-color:var(--f1)}.vorschau{margin-top:6px;padding:6px 10px;min-height:2.4em;background:var(--panel);border-radius:8px;overflow-x:auto;font-size:1.1rem}.vorschau.unfertig{color:var(--muted)}.vorschau .katex-display{margin:0;text-align:left}.tastatur{margin:8px 0 4px;padding:6px;background:var(--panel);border-radius:10px;max-width:560px;touch-action:manipulation;overscroll-behavior:contain;user-select:none}.tastatur .reiter{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}.tastatur .reiter button{padding:4px 10px;font-size:14px;border-radius:6px;background:#fff;min-height:32px}.tastatur .reiter button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}.tastatur .reiter .umschalten{margin-left:auto;background:#e9ebef}.tastatur .koerper{display:flex;gap:8px}.tastatur .links{flex:2;display:grid;grid-template-columns:repeat(2,1fr);gap:4px}.tastatur .rechts{flex:7;display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.taste{padding:0 2px;min-width:0;min-height:42px;font-size:18px;border-radius:7px;touch-action:manipulation;user-select:none;white-space:nowrap;overflow:hidden}.taste.lang{font-size:14px}.taste.lk{background:#fff}.taste.zf{background:#fff;font-weight:500}.taste.op{background:#f0f2f5}.taste.st{background:#e8eef9;color:#163f80}.taste.ak{background:#e3e6eb;font-size:16px}.taste.leer{visibility:hidden}@media (max-width:520px){.tastatur .koerper{flex-direction:column;gap:4px}.tastatur .links{grid-template-columns:repeat(4,1fr)}.taste{min-height:40px}}.feld.text textarea{width:100%;box-sizing:border-box;font:16px/1.45 system-ui,sans-serif;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;resize:vertical;color:var(--ink)}.feld.text textarea:focus{outline:none;border-color:var(--f1)}.feld.gesperrt input,.feld.gesperrt textarea{background:var(--panel);color:var(--ink)}.rueck{margin-top:8px;padding:8px 10px;border-radius:8px}.rueck.gut{background:#e6f4f1;color:#0b5c53}.rueck.schlecht{background:#fbeceb;color:#8c1d18}.tipp,.weg{margin-top:8px;padding:8px 10px;border-left:3px solid var(--f2);background:#fdf5ec;border-radius:0 8px 8px 0}.weg{border-left-color:var(--f3);background:#eef7f6}.ersatz textarea{width:100%;font:14px/1.4 ui-monospace,Consolas,monospace}.ersatz p{margin:8px 0 4px;color:var(--muted);font-size:.9rem}.klein{font-size:.9rem;color:var(--muted)}.nr{font-size:.8rem;font-weight:600;color:var(--muted);text-transform:none;margin-bottom:2px}h2{font-size:1.05rem;margin:0 0 6px}.frage{margin:0 0 8px}.optionen{display:grid;gap:6px;margin:4px 0}.optionen label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}.optionen input{width:18px;height:18px;accent-color:var(--f1)}.aufgabe{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.layout{display:grid;gap:14px}@media(min-width:760px){.layout{grid-template-columns:minmax(0,1fr) 340px;align-items:start}#figur{position:sticky;top:8px}}#figur{width:100%;display:block;border:1px solid var(--line);border-radius:8px;user-select:none}.tick{font-size:12px}.marke{font-size:14px;font-weight:600}.regler{display:block;margin:10px 0 0;font-weight:600}.regler input{width:100%;height:30px;accent-color:var(--f2)}.nav{justify-content:space-between}.punkte{display:flex;gap:6px;justify-content:center;margin-top:10px}.punkte button{width:14px;height:14px;padding:0;border-radius:50%;border:1.5px solid var(--hilf);background:#fff}.punkte button.fertig{background:var(--hilf)}.punkte button.an{background:var(--f1);border-color:var(--f1)}.layout.ohne{grid-template-columns:1fr}.panel{background:var(--panel);border-radius:8px;padding:10px 12px}.panel label{display:block;font-weight:600;margin:8px 0 0}.panel input[type=range]{width:100%;height:30px;accent-color:var(--f1)}.wert{float:right;font-weight:400;font-variant-numeric:tabular-nums}.term{margin:2px 0;font-size:1.05rem}.term b{font-size:.8rem;vertical-align:1px}.anzeige{margin:10px 0}.anzeige div{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding:4px 0;font-variant-numeric:tabular-nums}.stand{margin:10px 0;font-variant-numeric:tabular-nums}.diagramm{width:100%;display:block;border:1px solid var(--line);border-radius:8px}.uhr{position:sticky;top:0;z-index:5;margin:0 -2px 12px;padding:8px 12px;border-radius:8px;background:var(--ink);color:#fff;font-weight:600;font-variant-numeric:tabular-nums}.uhr.knapp{background:#9a5b00}.uhr.vorbei{background:var(--schlecht)}.uhr.fertig{background:var(--gut)}.start table.teile{border-collapse:collapse;width:100%;margin:4px 0 8px;font-size:.95rem}.start th,.start td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}.start th{color:var(--muted);font-weight:600;font-size:.85rem}.start td:last-child,.start th:last-child{text-align:right}.start td:nth-child(-n+2){white-space:nowrap}.summe{font-weight:600;margin:4px 0 10px}.wahl{display:grid;gap:6px;margin:8px 0}.wahl .frage{margin:4px 0 0;font-weight:600}.wahl label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}.wahl input{width:18px;height:18px;accent-color:var(--f1);flex:none}.teilkopf h2{margin:4px 0 0}.teilkopf p{margin:2px 0 10px}.aufgabe-pa .nr{display:flex;justify-content:space-between;gap:8px;font-size:.85rem}.pkt{color:var(--muted);font-weight:600;white-space:nowrap;margin-left:auto}.ta{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.ta:first-of-type{border-top:0}.ta-kopf{display:flex;gap:8px;align-items:baseline}.ta-text{flex:1}.feldzeile{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:8px}.feldzeile .feld{flex:1 1 180px;min-width:0}.feldzeile .vor,.feldzeile .nach{white-space:nowrap}.feldzeile .tastatur{flex-basis:100%}.feldzeile .vorschau{font-size:1rem;min-height:0;padding:4px 10px}.taste.st{font-size:15px}.fig{width:100%;display:block;border:1px solid var(--line);border-radius:8px;margin:8px 0}.papier{margin:8px 0 0;font-size:.9rem;color:var(--muted)}.papier::before{content:\"✎ \"}.klein-knopf{padding:4px 10px;font-size:.9rem;margin-top:8px}.erg{margin:4px 0 0;font-size:.95rem;font-weight:600}.erg.richtig{color:var(--gut)}.erg.falsch{color:var(--schlecht)}.erg.gerundet{color:#9a5b00}.erg.leer,.erg.offen{color:var(--muted)}.erg span{font-weight:400}.optionen label.richtig{border-color:var(--gut);background:#eef7f6}.optionen label.falsch{border-color:var(--schlecht);background:#fbeceb}.auswertung{margin-top:8px;font-size:.9rem;color:var(--muted)}.auswertung p{margin:4px 0}.loesung{margin-top:6px;padding:8px 10px;border-left:3px solid var(--f3);background:#eef7f6;border-radius:0 8px 8px 0;color:var(--ink);font-size:1rem}.ergebnis{border-color:var(--f1);border-width:2px}.ergebnis h2{margin:0 0 6px}svg.baum{width:100%;display:block;user-select:none}#rechnung{margin-top:6px}#rechnung .zeile{padding:6px 10px;background:var(--panel);border-radius:8px;margin-top:6px;overflow-x:auto}#rechnung .summe{background:#fdf0e3;font-weight:600}#rechnung .katex-display{margin:0;text-align:left}.startzeile{padding:6px 10px;background:var(--panel);border-radius:8px;margin:6px 0 4px;overflow-x:auto}.startzeile .katex-display{margin:0;text-align:left}.zeile-um{display:grid;grid-template-columns:1fr 34%;gap:4px 8px;margin-top:8px;align-items:start}.zeile-um .erg{grid-column:1/-1;margin:0}.zeile-um .tastatur{grid-column:1/-1}.zeile-um .befehl input{font-size:16px;color:var(--muted)}@media (max-width:520px){.zeile-um{grid-template-columns:1fr 38%}}";
+const BETTY_CSS = ":root{--ink:#1d2330;--muted:#5d6472;--line:#d9dce3;--grid:#eceef2;--axis:#2f3542;--panel:#f5f6f8;--f1:#1f5fbf;--f2:#d9730d;--f3:#13857a;--hilf:#7d8491;--gut:#13857a;--schlecht:#b3261e;color-scheme:light}*{box-sizing:border-box}body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 system-ui,-apple-system,\"Segoe UI\",Roboto,sans-serif}main{max-width:860px;margin:0 auto;padding:14px 16px 24px}h1{font-size:1.2rem;margin:0 0 4px}.auftrag{margin:0 0 12px;color:var(--muted)}button{font:inherit;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);cursor:pointer}button.haupt{background:var(--f1);border-color:var(--f1);color:#fff}button:disabled{opacity:.45;cursor:default}.karte{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:0 0 12px}.knoepfe{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.feld input{width:100%;font:18px/1.4 ui-monospace,Consolas,monospace;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}.feld input:focus{outline:none;border-color:var(--f1)}.vorschau{margin-top:6px;padding:6px 10px;min-height:2.4em;background:var(--panel);border-radius:8px;overflow-x:auto;font-size:1.1rem}.vorschau.unfertig{color:var(--muted)}.vorschau .katex-display{margin:0;text-align:left}.tastatur{margin:8px 0 4px;padding:6px;background:var(--panel);border-radius:10px;max-width:560px;touch-action:manipulation;overscroll-behavior:contain;user-select:none}.tastatur .reiter{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}.tastatur .reiter button{padding:4px 10px;font-size:14px;border-radius:6px;background:#fff;min-height:32px}.tastatur .reiter button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}.tastatur .reiter .umschalten{margin-left:auto;background:#e9ebef}.tastatur .koerper{display:flex;gap:8px}.tastatur .links{flex:2;display:grid;grid-template-columns:repeat(2,1fr);gap:4px}.tastatur .rechts{flex:7;display:grid;grid-template-columns:repeat(7,1fr);gap:4px}.taste{padding:0 2px;min-width:0;min-height:42px;font-size:18px;border-radius:7px;touch-action:manipulation;user-select:none;white-space:nowrap;overflow:hidden}.taste.lang{font-size:14px}.taste.lk{background:#fff}.taste.zf{background:#fff;font-weight:500}.taste.op{background:#f0f2f5}.taste.st{background:#e8eef9;color:#163f80}.taste.ak{background:#e3e6eb;font-size:16px}.taste.leer{visibility:hidden}@media (max-width:520px){.tastatur .koerper{flex-direction:column;gap:4px}.tastatur .links{grid-template-columns:repeat(4,1fr)}.taste{min-height:40px}}.feld.text textarea{width:100%;box-sizing:border-box;font:16px/1.45 system-ui,sans-serif;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;resize:vertical;color:var(--ink)}.feld.text textarea:focus{outline:none;border-color:var(--f1)}.feld.gesperrt input,.feld.gesperrt textarea{background:var(--panel);color:var(--ink)}.rueck{margin-top:8px;padding:8px 10px;border-radius:8px}.rueck.gut{background:#e6f4f1;color:#0b5c53}.rueck.schlecht{background:#fbeceb;color:#8c1d18}.tipp,.weg{margin-top:8px;padding:8px 10px;border-left:3px solid var(--f2);background:#fdf5ec;border-radius:0 8px 8px 0}.weg{border-left-color:var(--f3);background:#eef7f6}.ersatz textarea{width:100%;font:14px/1.4 ui-monospace,Consolas,monospace}.ersatz p{margin:8px 0 4px;color:var(--muted);font-size:.9rem}.klein{font-size:.9rem;color:var(--muted)}.nr{font-size:.8rem;font-weight:600;color:var(--muted);text-transform:none;margin-bottom:2px}h2{font-size:1.05rem;margin:0 0 6px}.frage{margin:0 0 8px}.optionen{display:grid;gap:6px;margin:4px 0}.optionen label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}.optionen input{width:18px;height:18px;accent-color:var(--f1)}.aufgabe{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.layout{display:grid;gap:14px}@media(min-width:760px){.layout{grid-template-columns:minmax(0,1fr) 340px;align-items:start}#figur{position:sticky;top:8px}}#figur{width:100%;display:block;border:1px solid var(--line);border-radius:8px;user-select:none}.tick{font-size:12px}.marke{font-size:14px;font-weight:600}.regler{display:block;margin:10px 0 0;font-weight:600}.regler input{width:100%;height:30px;accent-color:var(--f2)}.nav{justify-content:space-between}.punkte{display:flex;gap:6px;justify-content:center;margin-top:10px}.punkte button{width:14px;height:14px;padding:0;border-radius:50%;border:1.5px solid var(--hilf);background:#fff}.punkte button.fertig{background:var(--hilf)}.punkte button.an{background:var(--f1);border-color:var(--f1)}.layout.ohne{grid-template-columns:1fr}.panel{background:var(--panel);border-radius:8px;padding:10px 12px}.panel label{display:block;font-weight:600;margin:8px 0 0}.panel input[type=range]{width:100%;height:30px;accent-color:var(--f1)}.wert{float:right;font-weight:400;font-variant-numeric:tabular-nums}.term{margin:2px 0;font-size:1.05rem}.term b{font-size:.8rem;vertical-align:1px}.anzeige{margin:10px 0}.anzeige div{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding:4px 0;font-variant-numeric:tabular-nums}.stand{margin:10px 0;font-variant-numeric:tabular-nums}.diagramm{width:100%;display:block;border:1px solid var(--line);border-radius:8px}.uhr{position:sticky;top:0;z-index:5;margin:0 -2px 12px;padding:8px 12px;border-radius:8px;background:var(--ink);color:#fff;font-weight:600;font-variant-numeric:tabular-nums}.uhr.knapp{background:#9a5b00}.uhr.vorbei{background:var(--schlecht)}.uhr.fertig{background:var(--gut)}.start table.teile{border-collapse:collapse;width:100%;margin:4px 0 8px;font-size:.95rem}.start th,.start td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}.start th{color:var(--muted);font-weight:600;font-size:.85rem}.start td:last-child,.start th:last-child{text-align:right}.start td:nth-child(-n+2){white-space:nowrap}.summe{font-weight:600;margin:4px 0 10px}.wahl{display:grid;gap:6px;margin:8px 0}.wahl .frage{margin:4px 0 0;font-weight:600}.wahl label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}.wahl input{width:18px;height:18px;accent-color:var(--f1);flex:none}.teilkopf h2{margin:4px 0 0}.teilkopf p{margin:2px 0 10px}.aufgabe-pa .nr{display:flex;justify-content:space-between;gap:8px;font-size:.85rem}.pkt{color:var(--muted);font-weight:600;white-space:nowrap;margin-left:auto}.ta{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.ta:first-of-type{border-top:0}.ta-kopf{display:flex;gap:8px;align-items:baseline}.ta-text{flex:1}.feldzeile{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:8px}.feldzeile .feld{flex:1 1 180px;min-width:0}.feldzeile .vor,.feldzeile .nach{white-space:nowrap}.feldzeile .tastatur{flex-basis:100%}.feldzeile .vorschau{font-size:1rem;min-height:0;padding:4px 10px}.taste.st{font-size:15px}.fig{width:100%;display:block;border:1px solid var(--line);border-radius:8px;margin:8px 0}.papier{margin:8px 0 0;font-size:.9rem;color:var(--muted)}.papier::before{content:\"✎ \"}.klein-knopf{padding:4px 10px;font-size:.9rem;margin-top:8px}.erg{margin:4px 0 0;font-size:.95rem;font-weight:600}.erg.richtig{color:var(--gut)}.erg.falsch{color:var(--schlecht)}.erg.gerundet{color:#9a5b00}.erg.leer,.erg.offen{color:var(--muted)}.erg span{font-weight:400}.optionen label.richtig{border-color:var(--gut);background:#eef7f6}.optionen label.falsch{border-color:var(--schlecht);background:#fbeceb}.auswertung{margin-top:8px;font-size:.9rem;color:var(--muted)}.auswertung p{margin:4px 0}.loesung{margin-top:6px;padding:8px 10px;border-left:3px solid var(--f3);background:#eef7f6;border-radius:0 8px 8px 0;color:var(--ink);font-size:1rem}.ergebnis{border-color:var(--f1);border-width:2px}.ergebnis h2{margin:0 0 6px}svg.baum{width:100%;display:block;user-select:none}#rechnung{margin-top:6px}#rechnung .zeile{padding:6px 10px;background:var(--panel);border-radius:8px;margin-top:6px;overflow-x:auto}#rechnung .summe{background:#fdf0e3;font-weight:600}#rechnung .katex-display{margin:0;text-align:left}.startzeile{padding:6px 10px;background:var(--panel);border-radius:8px;margin:6px 0 4px;overflow-x:auto}.startzeile .katex-display{margin:0;text-align:left}.zeile-um{display:grid;grid-template-columns:1fr 34%;gap:4px 8px;margin-top:8px;align-items:start}.zeile-um .erg{grid-column:1/-1;margin:0}.zeile-um .tastatur{grid-column:1/-1}.zeile-um .befehl input{font-size:16px;color:var(--muted)}@media (max-width:520px){.zeile-um{grid-template-columns:1fr 38%}}.zuordnen{display:grid;grid-template-columns:1fr 1fr;gap:10px}.spaltenkopf{font-weight:600;color:var(--muted);font-size:.85rem;margin-bottom:4px;min-height:1em}.zkarte{display:flex;flex-direction:column;align-items:stretch;width:100%;text-align:left;padding:8px 8px 6px;margin-bottom:8px;border:1.5px solid var(--line);border-radius:10px;background:#fff;position:relative;font-size:1rem}.zkarte .marke{position:absolute;top:6px;left:8px;font-weight:700;font-size:.8rem;color:var(--muted)}.zkarte .inhalt{padding-left:18px;min-height:26px;overflow-x:auto}.zkarte .verbunden{font-size:.85rem;font-weight:700;color:var(--f1);align-self:flex-end;min-height:1.1em}.zkarte .unter{font-size:.9rem;margin-top:2px}.zkarte.gewaehlt{border-color:var(--f2);box-shadow:0 0 0 2px #f6d3ad}.zkarte.ok{border-color:var(--gut);background:#eef7f6}.zkarte.falsch{border-color:var(--schlecht);background:#fbeceb}svg.mini{width:100%;display:block}.fzeile{display:flex;gap:10px;width:100%;text-align:left;align-items:center;padding:8px 10px;margin:6px 0;border:1.5px solid var(--line);border-radius:8px;background:#fff;font-size:1rem}.fnr{font-weight:700;color:var(--muted);min-width:1.4em}.ftext{flex:1;overflow-x:auto}.fzeile.fehlerzeile{border-color:var(--schlecht);background:#fbeceb}.fzeile.stimmt{border-color:#bfe0dc}.teil2{margin-top:10px}.vf-wrap{overflow-x:auto}table.vierfeld{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}.vierfeld th,.vierfeld td{border:1px solid var(--line);padding:8px 6px;text-align:center}.vierfeld th small{display:block;font-weight:400;color:var(--muted);font-size:.75rem}.vierfeld td.innen{cursor:pointer;font-weight:600}.vierfeld td.an{background:#fdf0e3;outline:2px solid var(--f2);outline-offset:-2px}.vierfeld .ecke{border:0}.vierfeld td.luecke{min-width:64px;padding:4px}.vierfeld .feld input{font-size:16px;padding:6px;text-align:center}input.richtig{border-color:var(--gut)!important;background:#eef7f6!important}input.falsch{border-color:var(--schlecht)!important}.lz-leiste{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}.lz-leiste .betont{color:var(--schlecht);font-weight:600}.lz-raster{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}.lz-karte{margin:0}.lz-karte h2{font-size:1.05rem;margin:0 0 6px}.merke{padding:6px 10px;background:#eef4fc;border-left:3px solid var(--f1);border-radius:0 8px 8px 0}.lz-formel{margin:4px 0;overflow-x:auto}.lz-formel .katex-display{margin:4px 0}.lz-beispiel,.lz-fehler{margin-top:6px;font-size:.95rem}.lz-fehler{color:#8a3b12}.lz-bild{margin:6px 0}.kannich{list-style:none;padding:0;margin:8px 0 0}.kannich li{display:flex;gap:6px;align-items:flex-start;font-size:.95rem}.haken{padding:0 4px;border:0;background:none;font-size:1.15rem;line-height:1.2;min-height:0}@media print{@page{size:A4;margin:11mm}body.lernzettel{font-size:9.5pt}.nicht-drucken,.tastatur{display:none!important}body.lernzettel main{max-width:none;padding:0;margin:0}body.lernzettel h1{font-size:15pt;margin:0 0 2px}body.lernzettel .auftrag{margin:0 0 6px}.lz-raster{grid-template-columns:1fr 1fr;gap:7px}.lz-karte{break-inside:avoid;border-color:#999;padding:7px 9px}.merke,.lz-karte{-webkit-print-color-adjust:exact;print-color-adjust:exact}.lz-bild{max-height:42mm}}";
 /* Term: Eingaben lesen, als Formel anzeigen und mathematisch vergleichen */
 const Term = (() => {
   const FN = { sin: Math.sin, cos: Math.cos, tan: Math.tan, ln: Math.log, log: Math.log10, lg: Math.log10, sqrt: Math.sqrt, cbrt: Math.cbrt, abs: Math.abs };
@@ -226,7 +226,7 @@ const Tex = {
       if (t[0] !== "$") { el.insertAdjacentHTML("beforeend", t); return; }
       const gross = t.startsWith("$$"), e = document.createElement(gross ? "div" : "span"), roh = t.slice(gross ? 2 : 1, gross ? -2 : -1);
       let tex = roh;
-      if (!roh.includes("\\")) { try { tex = Term.texAntwort(roh); } catch (x) {
+      if (!roh.includes("\\")) { try { tex = (/^\s*\+/.test(roh) ? "+" : "") + Term.texAntwort(roh); } catch (x) {
         tex = roh.replace(/(^|[^a-zA-Z\\])(sin|cos|tan|ln|lg|log|lim)(?![a-zA-Z])/g, "$1\\$2 ").replace(/·/g, "\\cdot ").replace(/°/g, "^{\\circ}");
         const m = roh.match(/^(.*?)\s*(=|≈|<|>|≤|≥)\s*$/); if (m) { try { tex = Term.texAntwort(m[1]) + { "=": "=", "≈": "\\approx", "<": "<", ">": ">", "≤": "\\le", "≥": "\\ge" }[m[2]]; } catch (y) {} } } }
       Tex.formel(tex, e, gross); el.appendChild(e);
@@ -346,7 +346,7 @@ const Tastatur = (() => {
     aktiv = obj; if (neu) { cfgAktiv = obj.k; liste = ebenen(obj.k); ebene = Math.max(0, liste.findIndex(e => e.name === obj.k.start)); }
     offen = obj.offen;
     if (tippen) obj.input.inputMode = offen ? "none" : "text";
-    w.after(box); box.hidden = false; baue();
+    (obj.o.tastaturNach || w).after(box); box.hidden = false; baue();
   }
   // feld(eltern, { platzhalter, beiEnter, beiEingabe, tastatur, mehrzeilig, vorschau })
   function feld(eltern, o = {}) {
@@ -488,7 +488,7 @@ function marke(s) {
 const px = x => (x - V.xMin) / (V.xMax - V.xMin) * W, py = y => H - (y - V.yMin) / (V.yMax - V.yMin) * H;
 function messen() {
   const xR = A.xMax - A.xMin, yR = A.yMax - A.yMin;
-  W = Math.max(260, Math.round(svg.getBoundingClientRect().width || 640));
+  W = Math.max(A.hoehe ? 120 : 260, Math.round(svg.getBoundingClientRect().width || 640));
   V = { xMin: A.xMin, xMax: A.xMax, yMin: A.yMin, yMax: A.yMax };
   const HM = Math.round(Math.min(480, Math.max(240, (window.innerHeight || 800) * 0.55)));
   if (A.gleicheEinheiten) {
@@ -496,13 +496,18 @@ function messen() {
     if (H > HM) { H = HM; const n = W * yR / H, m = (A.xMin + A.xMax) / 2; V.xMin = m - n / 2; V.xMax = m + n / 2; }
     if (H < 220) { H = 220; const n = H * xR / W, m = (A.yMin + A.yMax) / 2; V.yMin = m - n / 2; V.yMax = m + n / 2; }
   } else H = Math.min(HM, Math.max(220, W * 0.66));
+  if (A.hoehe) { // feste Höhe für kleine Graphen (Zuordnen, Lernzettel)
+    H = A.hoehe; V = { xMin: A.xMin, xMax: A.xMax, yMin: A.yMin, yMax: A.yMax };
+    if (A.gleicheEinheiten) { const n = W * yR / H; if (n >= xR) { const m = (A.xMin + A.xMax) / 2; V.xMin = m - n / 2; V.xMax = m + n / 2; } else { const n2 = H * xR / W, m = (A.yMin + A.yMax) / 2; V.yMin = m - n2 / 2; V.yMax = m + n2 / 2; } }
+  }
   H = Math.round(H);
 }
 function teilung(r, p) { const roh = r / Math.max(2, p / 55), q = 10 ** Math.floor(Math.log10(roh)); for (const k of [1, 2, 5, 10]) if (k * q >= roh) return k * q; }
 function piText(k) { const s = k < 0 ? "−" : ""; k = Math.abs(k); return k % 2 === 0 ? s + (k === 2 ? "" : k / 2) + "π" : s + (k === 1 ? "" : k) + "π/2"; }
 function spitze(x, y, w, f) { const l = 9, b = 4.5, c = Math.cos(w), s = Math.sin(w); el("polygon", { points: `${x},${y} ${x - l * c - b * s},${y - l * s + b * c} ${x - l * c + b * s},${y - l * s - b * c}`, fill: f }); }
 function achsen() {
-  let sx = teilung(V.xMax - V.xMin, W), sy = teilung(V.yMax - V.yMin, H);
+  const dicht = A.hoehe && A.hoehe < 200 ? 2 : 1; // kleine Graphen: mehr Skalenstriche
+  let sx = teilung(V.xMax - V.xMin, W * dicht), sy = teilung(V.yMax - V.yMin, H * dicht);
   if (A.xPi) sx = W / (V.xMax - V.xMin) * Math.PI / 2 >= 45 ? Math.PI / 2 : Math.PI; else if (A.gleicheEinheiten) sx = sy = Math.max(sx, sy);
   const xs = [], ys = [];
   const sk = A.skalaX || [-Infinity, Infinity];
@@ -556,7 +561,7 @@ const Bruch = (() => {
     s = String(s ?? "").replace(/\s/g, "").replace(/[−–]/g, "-");
     let m = s.match(/^(-?\d+)\/(\d+)$/); if (m) return { z: +m[1], n: +m[2], dez: false };
     m = s.match(/^(-?\d+(?:[.,]\d+)?)%$/); if (m) { const d = (m[1].split(/[.,]/)[1] || "").length; return kurz({ z: Math.round(parseFloat(m[1].replace(",", ".")) * 10 ** d), n: 100 * 10 ** d, dez: true }); }
-    m = s.match(/^-?\d+(?:[.,](\d+))?$/); if (m) { const d = (m[1] || "").length; return kurz({ z: Math.round(parseFloat(s.replace(",", ".")) * 10 ** d), n: 10 ** d, dez: true }); }
+    m = s.match(/^-?\d+(?:[.,](\d+))?$/); if (m) { const d = (m[1] || "").length; return kurz({ z: Math.round(parseFloat(s.replace(",", ".")) * 10 ** d), n: 10 ** d, dez: d > 0 }); }
     let v = NaN; try { v = Term.zahl(s); } catch (e) {}
     return { z: v, n: 1, dez: true, roh: true };
   }
@@ -966,6 +971,260 @@ function umformenSeite(C, H) {
     kopiere(zz.join("\n"), e.currentTarget);
   });
 }
+/* Zuordnen: Paare durch Antippen bilden (Term ↔ Graph, Begriff ↔ Beispiel …). Einträge sind Text mit $…$ oder kleine
+   Graphen: { f: x => …, ansicht } bzw. { zeichne: (g, p) => …, ansicht }. Mit Ablenkern rechts, Prüfen, Lösung nach Versuchen. */
+function zuordnenSeite(C, H) {
+  const { seite, $, beiGroesse } = H;
+  seite(C, `<div class="karte"><div class="zuordnen"><div><div class="spaltenkopf" id="kopfL"></div><div id="spL"></div></div><div><div class="spaltenkopf" id="kopfR"></div><div id="spR"></div></div></div>
+    <div class="rueck" id="zrueck" hidden></div><div class="knoepfe"><button type="button" class="haupt" id="zpruefen">Prüfen</button><button type="button" id="zloesung" hidden>Lösung zeigen</button></div></div>
+    <div class="karte"><p class="klein">Tippe links einen Eintrag an und dann rechts den passenden. Falsch gesetzte Paare kannst du einfach neu verbinden.</p><button type="button" class="haupt" id="kopieren">Ergebnisse in den Chat kopieren</button></div>`);
+  $("kopfL").textContent = C.links || ""; $("kopfR").textContent = C.rechts || "";
+  const BU = "ABCDEFGHIJKLMNOP", figuren = [];
+  const L = C.paare.map((p, i) => ({ i, inhalt: p.links, ziel: i })), R0 = C.paare.map((p, i) => ({ inhalt: p.rechts, paar: i })).concat((C.extra || []).map(x => ({ inhalt: x, paar: -1 })));
+  // Mischen, aber nie in der Ausgangsreihenfolge
+  let R = R0.slice(); for (let k = 0; k < 20; k++) { R.sort(() => Math.random() - 0.5); if (R.some((r, i) => r.paar !== i)) break; }
+  R.forEach((r, j) => r.j = j);
+  const zu = new Map(); let wahl = null, versuche = 0, fertig = false, frueher = [];
+  function inhalt(box, x) {
+    if (x && typeof x === "object" && (x.f || x.zeichne)) {
+      const s = document.createElementNS(NS, "svg"); s.setAttribute("class", "mini"); s.setAttribute("role", "img"); s.setAttribute("aria-label", x.text || "Graph"); box.appendChild(s);
+      const A = Object.assign({ xMin: -5, xMax: 5, yMin: -4, yMax: 6, hoehe: 120 }, C.ansicht || {}, x.ansicht || {});
+      figuren.push(() => { leinwand(s, A); if (x.f) g.kurve(x.f, { farbe: x.farbe || "var(--f1)" }); if (x.zeichne) x.zeichne(g, P); });
+      if (x.text) { const t = document.createElement("div"); t.className = "unter"; Tex.text(t, x.text); box.appendChild(t); }
+    } else { const t = document.createElement("div"); Tex.text(t, typeof x === "object" ? x.text : x); box.appendChild(t); }
+  }
+  function karte(eltern, marke, x) {
+    const b = document.createElement("button"); b.type = "button"; b.className = "zkarte";
+    const m = document.createElement("span"); m.className = "marke"; m.textContent = marke; b.appendChild(m);
+    const i = document.createElement("div"); i.className = "inhalt"; b.appendChild(i); inhalt(i, x);
+    const z = document.createElement("span"); z.className = "verbunden"; b.appendChild(z); eltern.appendChild(b); return b;
+  }
+  L.forEach(l => { l.el = karte($("spL"), String(l.i + 1), l.inhalt); l.el.addEventListener("click", () => tippe(l, null)); });
+  R.forEach(r => { r.el = karte($("spR"), BU[r.j], r.inhalt); r.el.addEventListener("click", () => tippe(null, r)); });
+  function tippe(l, r) {
+    if (fertig) return;
+    if (l) { if (l.ok) return; if (wahl && wahl.r) { verbinde(l, wahl.r); wahl = null; } else wahl = wahl && wahl.l === l ? null : { l }; }
+    else if (r) { if (r.ok) return; if (wahl && wahl.l) { verbinde(wahl.l, r); wahl = null; } else wahl = wahl && wahl.r === r ? null : { r }; }
+    male();
+  }
+  function verbinde(l, r) { for (const [k, v] of zu) if (v === r) zu.delete(k); zu.set(l, r); l.falsch = r.falsch = false; }
+  function male() {
+    L.forEach(l => { const r = zu.get(l); l.el.querySelector(".verbunden").textContent = r ? "→ " + BU[r.j] : ""; l.el.classList.toggle("gewaehlt", !!(wahl && wahl.l === l)); l.el.classList.toggle("ok", !!l.ok); l.el.classList.toggle("falsch", !!l.falsch); });
+    R.forEach(r => { const l = [...zu].find(([, v]) => v === r); r.el.querySelector(".verbunden").textContent = l ? "← " + (l[0].i + 1) : ""; r.el.classList.toggle("gewaehlt", !!(wahl && wahl.r === r)); r.el.classList.toggle("ok", !!r.ok); r.el.classList.toggle("falsch", !!r.falsch); });
+  }
+  $("zpruefen").addEventListener("click", () => {
+    if (fertig) return; versuche++; let n = 0;
+    L.forEach(l => { const r = zu.get(l); if (!r) return; if (r.paar === l.ziel) { l.ok = r.ok = true; n++; } else { l.falsch = r.falsch = true; frueher.push((l.i + 1) + "→" + BU[r.j]); } });
+    const ok = L.filter(l => l.ok).length, rb = $("zrueck"); rb.hidden = false;
+    fertig = ok === L.length; rb.className = "rueck" + (fertig ? " gut" : " schlecht");
+    rb.textContent = fertig ? (C.lob || "Alles richtig zugeordnet.") : ok + " von " + L.length + " richtig. " + (zu.size < L.length ? "Es fehlen noch Paare. " : "") + "Verbinde die roten neu.";
+    if (!fertig && versuche >= (C.loesungNach ?? 3)) $("zloesung").hidden = false;
+    male();
+  });
+  $("zloesung").addEventListener("click", () => { L.forEach(l => { const r = R.find(x => x.paar === l.ziel); zu.set(l, r); l.ok = r.ok = true; l.falsch = r.falsch = false; }); fertig = true; C.geloest = true; male(); $("zloesung").hidden = true; $("zrueck").textContent = "Das ist die richtige Zuordnung."; });
+  $("kopieren").addEventListener("click", e => {
+    const ok = L.filter(l => l.ok && !C.geloest).length;
+    kopiere("Meine Ergebnisse: " + (C.titel || "Zuordnen") + "\n" + (versuche ? ok + " von " + L.length + " richtig zugeordnet nach " + versuche + (versuche === 1 ? " Prüfung" : " Prüfungen") : "noch nicht geprüft")
+      + (C.geloest ? " (Lösung angesehen)" : "") + (frueher.length ? "\nZuerst falsch: " + [...new Set(frueher)].join(", ") : ""), e.currentTarget);
+  });
+  beiGroesse(() => figuren.forEach(f => f())); figuren.forEach(f => f()); male();
+}
+
+/* Fehlersuche: vorgerechnete Lösung mit Fehler. Erst die erste falsche Zeile antippen, dann erklären und verbessern. */
+function fehlersucheSeite(C, H) {
+  const { seite, $ } = H;
+  seite(C, `<div id="fs"></div><div class="karte"><p id="stand"></p><button type="button" class="haupt" id="kopieren">Ergebnisse in den Chat kopieren</button></div>`);
+  const liste = (C.aufgaben || [C]).map((A, ai, alle) => {
+    const k = document.createElement("div"); k.className = "karte fehlersuche"; $("fs").appendChild(k);
+    k.innerHTML = `<div class="nr">${alle.length > 1 ? "Aufgabe " + (ai + 1) : "Aufgabe"}</div>`;
+    const auf = document.createElement("div"); auf.className = "frage"; Tex.text(auf, A.aufgabe || A.frage || ""); k.appendChild(auf);
+    const hin = document.createElement("p"); hin.className = "klein"; hin.textContent = A.hinweis || "Tippe die erste Zeile an, in der ein Fehler steckt."; k.appendChild(hin);
+    const E = { A, versuche: 0, gefunden: false, getippt: [] }, fehler = Array.isArray(A.fehler) ? A.fehler[0] : A.fehler;
+    const zeilen = A.zeilen.map((z, i) => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "fzeile";
+      const n = document.createElement("span"); n.className = "fnr"; n.textContent = (i + 1); b.appendChild(n);
+      const t = document.createElement("span"); t.className = "ftext"; Tex.text(t, z); b.appendChild(t);
+      b.addEventListener("click", () => tippe(i)); k.appendChild(b); return b;
+    });
+    const rueck = document.createElement("div"); rueck.className = "rueck"; rueck.hidden = true; k.appendChild(rueck);
+    const teil2 = document.createElement("div"); teil2.className = "teil2"; teil2.hidden = true; k.appendChild(teil2);
+    function tippe(i) {
+      if (E.gefunden) return; E.versuche++; E.getippt.push(i + 1); rueck.hidden = false;
+      if (i === fehler) {
+        E.gefunden = true; zeilen[i].classList.add("fehlerzeile"); zeilen.forEach((z, j) => { if (j < i) z.classList.add("stimmt"); });
+        rueck.className = "rueck gut"; rueck.textContent = "Genau, in Zeile " + (i + 1) + " steckt der Fehler."; zeige2(); stand(); return;
+      }
+      rueck.className = "rueck schlecht";
+      rueck.textContent = i < fehler ? "Zeile " + (i + 1) + " stimmt noch. Der Fehler kommt später." : "In Zeile " + (i + 1) + " wirkt schon ein Fehler nach. Der erste Fehler steckt weiter oben.";
+      if (E.versuche >= 3 && A.tipp) { rueck.textContent += " Tipp: "; const s = document.createElement("span"); Tex.text(s, A.tipp); rueck.appendChild(s); }
+      stand();
+    }
+    function zeige2() {
+      teil2.hidden = false;
+      const f1 = document.createElement("p"); f1.className = "frage"; f1.textContent = A.frageWas || "Was ist in dieser Zeile falsch?"; teil2.appendChild(f1);
+      E.text = Tastatur.feld(teil2, { mehrzeilig: true, zeilen: 2, platzhalter: "Erkläre den Fehler in eigenen Worten", tastatur: A.tastatur || C.tastatur });
+      if (A.richtig != null) {
+        const f2 = document.createElement("p"); f2.className = "frage"; f2.textContent = A.frageRichtig || "Wie muss die Zeile richtig lauten?"; teil2.appendChild(f2);
+        const fr = document.createElement("div"); teil2.appendChild(fr);
+        E.frage = baueAufgabe(fr, { frage: "", antwort: A.richtig, form: A.form, runden: A.runden, tipp: A.tipp, weg: A.erklaerung, wegNach: A.wegNach ?? 2, tastatur: A.tastatur || C.tastatur, lob: "Richtig verbessert." }, "verbessert", stand);
+      } else if (A.erklaerung) {
+        const b = knopf("Erklärung zeigen", () => { Tex.text(w, A.erklaerung); w.hidden = false; b.hidden = true; E.erklaert = true; stand(); }); b.className = "klein-knopf"; teil2.appendChild(b);
+        const w = document.createElement("div"); w.className = "weg"; w.hidden = true; teil2.appendChild(w);
+      }
+    }
+    return E;
+  });
+  function stand() { $("stand").innerHTML = "<b>" + liste.filter(E => E.gefunden).length + " von " + liste.length + " Fehlern gefunden</b>"; }
+  $("kopieren").addEventListener("click", e => {
+    const zz = ["Meine Fehlersuche: " + (C.titel || "")];
+    liste.forEach((E, i) => {
+      let s = (liste.length > 1 ? (i + 1) + ") " : "") + (E.gefunden ? "Fehler in Zeile " + E.getippt[E.getippt.length - 1] + " gefunden" + (E.versuche > 1 ? " (vorher getippt: " + E.getippt.slice(0, -1).join(", ") + ")" : "") : E.versuche ? "noch nicht gefunden (getippt: " + E.getippt.join(", ") + ")" : "nicht bearbeitet");
+      if (E.text && E.text.wert()) s += "\n   Erklärung: „" + E.text.wert().replace(/\s*\n\s*/g, " / ") + "“";
+      if (E.frage && E.frage.versuche) s += "\n   Verbessert: " + (E.frage.richtig ? "richtig" : "noch nicht richtig") + ", zuletzt " + E.frage.eingabe + (E.frage.weg ? " (Lösungsweg angesehen)" : "");
+      zz.push(s);
+    });
+    kopiere(zz.join("\n"), e.currentTarget);
+  });
+  stand();
+}
+/* Vierfeldertafel mit gekoppeltem Baum: Zelle antippen markiert den Pfad und umgekehrt, Baum umdrehbar
+   (bedingte Wahrscheinlichkeiten in beide Richtungen), Lücken in Tafel und Baum. Werte als Anzahlen oder Wahrscheinlichkeiten. */
+function vierfeldSeite(C, H) {
+  const { seite, $, beiGroesse } = H;
+  seite(C, `<div class="karte"><div class="vf-wrap"><table class="vierfeld" id="vf"></table></div><p class="klein" id="vfhin"></p></div>
+    <div class="karte"><div class="knoepfe" style="margin:0 0 6px"><button type="button" id="umdrehen"></button></div><svg id="baum" class="baum" role="img" aria-label="Baumdiagramm"></svg><div id="rechnung" aria-live="polite"></div></div>
+    <div id="luecken"></div><div id="aufgaben"></div><div class="karte"><p id="stand"></p><button type="button" class="haupt" id="kopieren">Ergebnisse in den Chat kopieren</button></div>`);
+  const ka = (C.kurz && C.kurz.a) || ["A", "Ā"], kb = (C.kurz && C.kurz.b) || ["B", "B̄"], la = C.a || ka, lb = C.b || kb;
+  const anzahl = !!C.anzahl, Q = C.anzahl || C.p, form = C.darstellung || (anzahl ? "bruch" : "dezimal");
+  const durch = (a, b) => Bruch.kurz({ z: a.z * b.n, n: a.n * b.z, dez: a.dez || b.dez });
+  const v = [0, 1].map(i => [0, 1].map(j => Bruch.lies(Q[i][j])));
+  const zs = i => Bruch.plus(v[i][0], v[i][1]), ss = j => Bruch.plus(v[0][j], v[1][j]), ges = Bruch.plus(zs(0), zs(1));
+  const p = x => anzahl ? durch(x, ges) : x;                      // Wahrscheinlichkeit einer Zelle/Summe
+  const fmt = b => form === "prozent" ? z(Bruch.wert(b) * 100, 2) + "%" : form === "dezimal" || b.dez ? z(Bruch.wert(b), 4) : Bruch.text(Bruch.kurz(b));
+  const tafelText = b => anzahl ? z(Bruch.wert(b), 2) : fmt(b);
+  const texName = s => /̄$/.test(s) ? "\\overline{" + s.slice(0, -1) + "}" : s;
+  const OFFEN = new Set(C.offen || []), BOFFEN = new Set(C.baumOffen || []);
+  let erst = C.start === "b" ? "b" : "a"; const mk = new Set(), luecken = [];
+  // Tafel
+  const T = $("vf"), kopf = T.insertRow();
+  kopf.insertCell().className = "ecke";
+  [0, 1].forEach(j => { const c = document.createElement("th"); c.innerHTML = `<b></b><small></small>`; c.querySelector("b").textContent = kb[j]; c.querySelector("small").textContent = lb[j] !== kb[j] ? lb[j] : ""; kopf.appendChild(c); });
+  const sh = document.createElement("th"); sh.textContent = "Summe"; kopf.appendChild(sh);
+  const zellen = {};
+  function feld(td, key, wert) {
+    if (!OFFEN.has(key)) { td.textContent = tafelText(wert); return; }
+    const [r1, c1] = key.split(""), nm = r1 === "s" ? (c1 === "s" ? "gesamt" : kb[+c1 - 1]) : c1 === "s" ? ka[+r1 - 1] : ka[+r1 - 1] + "∩" + kb[+c1 - 1];
+    const L = { key, wert, wo: "tafel", name: nm }; td.classList.add("luecke");
+    L.feld = Tastatur.feld(td, { platzhalter: "?", tastatur: C.tastatur || "stochastik", vorschau: false, beiEnter: pruefe, tastaturNach: $("vf").parentNode }); luecken.push(L);
+  }
+  [0, 1].forEach(i => {
+    const r = T.insertRow(), h = document.createElement("th"); h.innerHTML = `<b></b><small></small>`; h.querySelector("b").textContent = ka[i]; h.querySelector("small").textContent = la[i] !== ka[i] ? la[i] : ""; r.appendChild(h);
+    [0, 1].forEach(j => { const td = r.insertCell(); td.className = "innen"; zellen[i + "" + j] = td; feld(td, (i + 1) + "" + (j + 1), v[i][j]); td.addEventListener("click", e => { if (e.target.closest(".feld")) return; schalte(i, j); }); });
+    feld(r.insertCell(), (i + 1) + "s", zs(i));
+  });
+  const rs = T.insertRow(), sth = document.createElement("th"); sth.textContent = "Summe"; rs.appendChild(sth);
+  [0, 1].forEach(j => feld(rs.insertCell(), "s" + (j + 1), ss(j))); feld(rs.insertCell(), "ss", ges);
+  $("vfhin").textContent = "Tippe ein inneres Feld der Tafel oder einen Pfad im Baum an. Beide gehören zusammen.";
+  // Baum
+  const pfadKey = (i, j) => erst === "a" ? ka[i] + "-" + kb[j] : kb[j] + "-" + ka[i];
+  function baumDaten() {
+    const st = erst === "a" ? [C.stufeA || "1. Stufe", C.stufeB || "2. Stufe"] : [C.stufeB || "1. Stufe", C.stufeA || "2. Stufe"];
+    const kinder = [0, 1].map(x => {
+      const erste = erst === "a" ? p(zs(x)) : p(ss(x)), n1 = erst === "a" ? ka[x] : kb[x];
+      return { name: n1, p: fmt(erste), offen: BOFFEN.has(n1), kinder: [0, 1].map(y => {
+        const [i, j] = erst === "a" ? [x, y] : [y, x], n2 = erst === "a" ? kb[y] : ka[y], bed = durch(v[i][j], erst === "a" ? zs(i) : ss(j));
+        return { name: n2, p: fmt(bed), offen: BOFFEN.has(n1 + "-" + n2) }; }) };
+    });
+    return { stufen: st, kinder };
+  }
+  let B = baumDaten(), erg = { blaetter: [] };
+  function baumLuecken() {
+    luecken.filter(L => L.wo === "baum").forEach(L => { L.box.remove(); }); for (let k = luecken.length - 1; k >= 0; k--) if (luecken[k].wo === "baum") luecken.splice(k, 1);
+    const box = $("luecken"); box.textContent = "";
+    (function suche(k, pfad) { (k.kinder || []).forEach(c => { const p2 = pfad.concat([c]); if (c.offen) luecken.push({ wo: "baum", k: c, pfad: p2, wert: Bruch.lies(c.p), name: p2.map(q => q.name).join("→") }); suche(c, p2); }); })(B, []);
+    const lb2 = luecken.filter(L => L.wo === "baum"); if (!lb2.length) return;
+    const kk = document.createElement("div"); kk.className = "karte"; box.appendChild(kk);
+    const t = document.createElement("p"); t.className = "frage"; t.textContent = "Ergänze die Äste mit ? im Baum."; kk.appendChild(t);
+    lb2.forEach(L => { const z2 = document.createElement("div"); z2.className = "feldzeile"; kk.appendChild(z2); L.box = z2; const s = document.createElement("span"); s.className = "vor"; s.textContent = L.name + ":"; z2.appendChild(s);
+      L.feld = Tastatur.feld(z2, { platzhalter: "?", tastatur: C.tastatur || "stochastik", vorschau: "auto", beiEnter: pruefe }); });
+  }
+  const zeichne = () => { erg = baumZeichnen($("baum"), B, { markiert: mk, produkte: C.produkte !== false, beiKlick: (key) => { const t = erg.blaetter.find(q => erg.schl(q) === key); const n = t.map(q => q.name); const i = ka.indexOf(erst === "a" ? n[0] : n[1]), j = kb.indexOf(erst === "a" ? n[1] : n[0]); schalte(i, j); } }); };
+  function schalte(i, j) { const key = pfadKey(i, j); mk.has(key) ? mk.delete(key) : mk.add(key); zellen[i + "" + j].classList.toggle("an", mk.has(key)); zeichne(); rechne(); }
+  function rechne() {
+    const box = $("rechnung"); box.textContent = "";
+    [0, 1].forEach(i => [0, 1].forEach(j => {
+      if (!mk.has(pfadKey(i, j))) return;
+      const A1 = texName(ka[i]), B1 = texName(kb[j]), [x, y] = erst === "a" ? [A1, B1] : [B1, A1];
+      const erste = erst === "a" ? p(zs(i)) : p(ss(j)), bed = durch(v[i][j], erst === "a" ? zs(i) : ss(j)), schnitt = p(v[i][j]);
+      const tx = b => form === "prozent" ? z(Bruch.wert(b) * 100, 2).replace(",", "{,}") + "\\,\\%" : form === "dezimal" || b.dez ? z(Bruch.wert(b), 4).replace(",", "{,}") : Bruch.tex(Bruch.kurz(b));
+      const d1 = document.createElement("div"); d1.className = "zeile"; box.appendChild(d1);
+      Tex.formel(`P(${x}\\cap ${y}) = P(${x})\\cdot P_{${x}}(${y}) = ${tx(erste)}\\cdot ${tx(bed)} = ${tx(schnitt)}`, d1);
+      const d2 = document.createElement("div"); d2.className = "zeile"; box.appendChild(d2);
+      const nenner = erst === "a" ? zs(i) : ss(j), mitte = anzahl ? `\\frac{${z(Bruch.wert(v[i][j]), 2)}}{${z(Bruch.wert(nenner), 2)}}` : `\\frac{${tx(schnitt)}}{${tx(erste)}}`;
+      const kb2 = Bruch.kurz(bed), ende = form === "bruch" && !bed.dez ? (anzahl && (kb2.z !== Bruch.wert(v[i][j]) || kb2.n !== Bruch.wert(nenner)) ? " = " + Bruch.tex(kb2) : "") : " = " + tx(bed);
+      Tex.formel(`P_{${x}}(${y}) = \\frac{P(${x}\\cap ${y})}{P(${x})} = ${mitte}${ende}` + (Bruch.wert(kb2) * 1000 % 1 > 1e-9 ? `\\approx ${z(Bruch.wert(bed), 3).replace(",", "{,}")}` : ""), d2);
+    }));
+  }
+  const um = $("umdrehen"), umText = () => um.textContent = "Baum umdrehen: erst " + (erst === "a" ? kb[0] + "/" + kb[1] : ka[0] + "/" + ka[1]);
+  um.addEventListener("click", () => {
+    const alt = [...mk]; mk.clear(); erst = erst === "a" ? "b" : "a";
+    alt.forEach(k => { const n = k.split("-"); mk.add(n[1] + "-" + n[0]); });
+    B = baumDaten(); baumLuecken(); umText(); zeichne(); rechne(); stand();
+  });
+  function pruefe() {
+    luecken.forEach(L => {
+      const roh = L.feld.wert(); if (!roh || L.ok) return; L.versuche = (L.versuche || 0) + 1;
+      const soll = anzahl && L.wo === "tafel" ? z(Bruch.wert(L.wert), 6).replace(/\./g, "") : (L.wert.dez ? z(Bruch.wert(L.wert), 6).replace(/\./g, "") : L.wert.z + "/" + L.wert.n);
+      L.ok = Term.gleich(roh, soll, {}) || Term.gleich(roh, soll, { runden: 3 });
+      L.feld.input.classList.toggle("richtig", L.ok); L.feld.input.classList.toggle("falsch", !L.ok);
+      if (L.ok) { L.feld.sperre(true); if (L.k) L.k.geloest = true; }
+    });
+    zeichne(); rechne(); stand();
+  }
+  if (OFFEN.size || BOFFEN.size) { const kn = document.createElement("div"); kn.className = "knoepfe"; kn.appendChild(knopf("Lücken prüfen", pruefe, "haupt")); $("vf").closest(".karte").appendChild(kn); }
+  const st = (C.fragen || []).map((a, i) => { const b = document.createElement("div"); b.className = "karte"; b.innerHTML = `<div class="nr">Frage ${i + 1}</div>`; $("aufgaben").appendChild(b); return baueAufgabe(b, a, i + 1, stand); });
+  function stand() { const n = luecken.length, ok = luecken.filter(L => L.ok).length; $("stand").innerHTML = [n ? "<b>Lücken: " + ok + " von " + n + "</b>" : "", st.length ? "<b>Fragen: " + st.filter(s => s.richtig).length + " von " + st.length + " richtig</b>" : ""].filter(Boolean).join(" · ") || "Tippe Felder oder Pfade an. Fragen kannst du in den Chat schreiben."; }
+  $("kopieren").addEventListener("click", e => {
+    const zz = [ergebnisText(C.titel || "Vierfeldertafel", st)];
+    if (luecken.length) zz.push("Lücken: " + luecken.map(L => L.name + " = " + (L.feld.wert() ? Term.lesbar(L.feld.wert()) : "–") + (L.ok ? " ✓" : L.versuche ? " ✗" : "")).join("; "));
+    if (mk.size) zz.push("Angetippt: " + [...mk].join(", "));
+    kopiere(zz.join("\n"), e.currentTarget);
+  });
+  umText(); baumLuecken(); beiGroesse(zeichne); zeichne(); rechne(); stand();
+}
+/* Lernzettel zum Drucken: Abschnitte mit Merksatz, Formel, Beispiel, kleinem Graphen, typischem Fehler und Ich-kann-Liste.
+   Am Bildschirm einspaltig oder zweispaltig, gedruckt auf A4 zweispaltig. */
+function lernzettelSeite(C, H) {
+  const { seite, $, beiGroesse } = H;
+  seite(C, `<div class="nicht-drucken lz-leiste"><button type="button" class="haupt" id="drucken">Drucken</button><span class="klein" id="druckhinweis"></span></div><div class="lz-raster" id="lz"></div><p class="klein lz-fuss" id="lzfuss"></p>`);
+  document.body.classList.add("lernzettel");
+  const figuren = [], imRahmen = (() => { try { return window.self !== window.top; } catch (e) { return true; } })();
+  (C.abschnitte || []).forEach(A => {
+    const k = document.createElement("section"); k.className = "karte lz-karte"; $("lz").appendChild(k);
+    const h = document.createElement("h2"); h.textContent = A.titel || ""; k.appendChild(h);
+    if (A.merke) { const m = document.createElement("div"); m.className = "merke"; Tex.text(m, A.merke); k.appendChild(m); }
+    (Array.isArray(A.formel) ? A.formel : A.formel ? [A.formel] : []).forEach(f => { const d = document.createElement("div"); d.className = "lz-formel"; Tex.text(d, /\$/.test(f) ? f : "$$" + f + "$$"); k.appendChild(d); });
+    if (A.zeichne || A.f) {
+      const s = document.createElementNS(NS, "svg"); s.setAttribute("class", "mini lz-bild"); s.setAttribute("role", "img"); s.setAttribute("aria-label", A.bild || "Skizze"); k.appendChild(s);
+      const An = Object.assign({ xMin: -4, xMax: 4, yMin: -3, yMax: 5, hoehe: 140 }, A.ansicht || {});
+      figuren.push(() => { leinwand(s, An); if (A.f) g.kurve(A.f); if (A.zeichne) A.zeichne(g, P); });
+    }
+    if (A.beispiel) { const b = document.createElement("div"); b.className = "lz-beispiel"; Tex.text(b, "<b>Beispiel:</b> " + A.beispiel); k.appendChild(b); }
+    if (A.fehler) { const f = document.createElement("div"); f.className = "lz-fehler"; Tex.text(f, "<b>Achtung:</b> " + A.fehler); k.appendChild(f); }
+    if (A.kannIch && A.kannIch.length) {
+      const u = document.createElement("ul"); u.className = "kannich"; k.appendChild(u);
+      A.kannIch.forEach(t => { const li = document.createElement("li"); const b = document.createElement("button"); b.type = "button"; b.className = "haken"; b.setAttribute("aria-pressed", "false"); b.textContent = "☐";
+        b.addEventListener("click", () => { const an = b.getAttribute("aria-pressed") !== "true"; b.setAttribute("aria-pressed", an); b.textContent = an ? "☑" : "☐"; });
+        const s = document.createElement("span"); Tex.text(s, "Ich kann " + t.replace(/^ich kann\s*/i, "")); li.append(b, s); u.appendChild(li); });
+    }
+  });
+  if (C.fuss) Tex.text($("lzfuss"), C.fuss);
+  $("druckhinweis").textContent = imRahmen ? "In der Chat-Vorschau ist Drucken gesperrt. Lade den Codeblock herunter, öffne die Datei im Browser und drucke dort (Strg + P oder Teilen → Drucken)." : "Tipp: Im Druckdialog „Hintergrundgrafiken“ einschalten.";
+  $("drucken").addEventListener("click", () => { if (imRahmen) { $("druckhinweis").classList.add("betont"); return; } window.print(); });
+  if (imRahmen) $("drucken").textContent = "Drucken?";
+  const male = () => figuren.forEach(f => f());
+  addEventListener("beforeprint", male); beiGroesse(male); male();
+}
 /* Seiten: Betty.funktionen, Betty.lernschritte, Betty.uebung, Betty.tastatur, Betty.zufall */
 const Betty = (() => {
   const $ = id => document.getElementById(id);
@@ -1117,7 +1376,8 @@ const Betty = (() => {
     C.anzahlen.forEach((k, i) => $("knoepfe").appendChild(knopf(k === 1 ? "1-mal" : z(k, 0) + "-mal", () => ziehen(k), i === 0 ? "haupt" : "")));
     $("knoepfe").appendChild(knopf("Von vorn", neu)); beiGroesse(zeichne); neu();
   }
-  return { funktionen, lernschritte, uebung, tastatur, zufall, probearbeit: C => probearbeit(C, { seite, $, beiGroesse, rundPruefen }), baum: C => baumSeite(C, { seite, $, beiGroesse }), umformen: C => umformenSeite(C, { seite, $ }), version: "1.2.0" };
+  return { funktionen, lernschritte, uebung, tastatur, zufall, probearbeit: C => probearbeit(C, { seite, $, beiGroesse, rundPruefen }), baum: C => baumSeite(C, { seite, $, beiGroesse }), umformen: C => umformenSeite(C, { seite, $ }), zuordnen: C => zuordnenSeite(C, { seite, $, beiGroesse }), fehlersuche: C => fehlersucheSeite(C, { seite, $ }),
+    vierfeld: C => vierfeldSeite(C, { seite, $, beiGroesse }), lernzettel: C => lernzettelSeite(C, { seite, $, beiGroesse }), version: "1.3.0" };
 })();
 Object.assign(window, { Betty, Term, Tex, z, pm, pib, koef, rund, winkel, wuerfel, muenze });
 })();

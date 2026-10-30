@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@main/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Lernzettel: Quadratische Funktionen",
+  auftrag: "Klasse 9 · für die Klassenarbeit",
+  abschnitte: [
+    { titel: "Scheitelpunktform", merke: "$f(x) = a(x+d)^2 + e$ hat den Scheitelpunkt $S(-d | e)$. Für $a > 0$ ist die Parabel nach oben geöffnet, für $a < 0$ nach unten.",
+      ansicht: { xMin: -5, xMax: 3, yMin: -3, yMax: 5, hoehe: 130 }, zeichne: g => { g.kurve(x => 0.5 * (x + 2) ** 2 - 2); g.punkt(-2, -2, { text: "S(−2|−2)" }); },
+      beispiel: "$f(x) = 0,5(x+2)^2 - 2$: Scheitelpunkt $S(-2 | -2)$, nach oben geöffnet, gestaucht.",
+      fehler: "Bei $(x+2)$ liegt der Scheitelpunkt bei $x = -2$, nicht bei $+2$.",
+      kannIch: ["den Scheitelpunkt ablesen", "die Öffnung und Streckung beschreiben"] },
+    { titel: "Nullstellen mit der pq-Formel", merke: "Erst auf die Form $x^2 + px + q = 0$ bringen, dann:",
+      formel: "x_{1,2} = -\\frac{p}{2} \\pm \\sqrt{\\left(\\frac{p}{2}\\right)^2 - q}",
+      beispiel: "$x^2 - 6x + 5 = 0$: $p = -6$, $q = 5$, $x = 3 ± 2$, also $x_1 = 1$, $x_2 = 5$.",
+      fehler: "Vorzeichen von $p$ und $q$ mitnehmen. Steht vor $x^2$ eine Zahl, erst durch sie teilen.",
+      kannIch: ["p und q richtig ablesen", "an der Diskriminante sehen, wie viele Lösungen es gibt"] },
+    { titel: "Quadratische Ergänzung", merke: "Normalform in Scheitelpunktform: das Quadrat der halben Zahl vor $x$ ergänzen und wieder abziehen.",
+      beispiel: "$x^2 - 6x + 5 = x^2 - 6x + 9 - 9 + 5 = (x-3)^2 - 4$",
+      kannIch: ["Normalform in Scheitelpunktform umwandeln"] },
+    { titel: "Sachaufgaben", merke: "Skizze machen, Variable festlegen, Gleichung aufstellen, lösen, Lösung im Sachzusammenhang prüfen und Antwortsatz schreiben.",
+      beispiel: "Rechteck mit Fläche 40 m², Länge 3 m größer als Breite: $x(x+3) = 40$, also $x = 5$; $x = -8$ entfällt.",
+      kannIch: ["eine Gleichung aus einem Text aufstellen", "unpassende Lösungen begründet ausschließen"] },
+  ],
+};
+if (window.Betty) Betty.lernzettel(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>
