@@ -14,9 +14,22 @@ button:disabled{opacity:.45;cursor:default}
 .vorschau{margin-top:6px;padding:6px 10px;min-height:2.4em;background:var(--panel);border-radius:8px;overflow-x:auto;font-size:1.1rem}
 .vorschau.unfertig{color:var(--muted)}
 .vorschau .katex-display{margin:0;text-align:left}
-.tastatur{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin:8px 0 4px;padding:6px;background:var(--panel);border-radius:10px;max-width:460px}
-.taste{padding:0;min-height:44px;font-size:18px;border-radius:7px;touch-action:manipulation;user-select:none}
-.taste.steuer{background:#e9ebef;font-size:15px}
+.tastatur{margin:8px 0 4px;padding:6px;background:var(--panel);border-radius:10px;max-width:560px;touch-action:manipulation;overscroll-behavior:contain;user-select:none}
+.tastatur .reiter{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.tastatur .reiter button{padding:4px 10px;font-size:14px;border-radius:6px;background:#fff;min-height:32px}
+.tastatur .reiter button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.tastatur .reiter .umschalten{margin-left:auto;background:#e9ebef}
+.tastatur .koerper{display:flex;gap:8px}
+.tastatur .links{flex:2;display:grid;grid-template-columns:repeat(2,1fr);gap:4px}
+.tastatur .rechts{flex:7;display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.taste{padding:0 2px;min-width:0;min-height:42px;font-size:18px;border-radius:7px;touch-action:manipulation;user-select:none;white-space:nowrap;overflow:hidden}
+.taste.lang{font-size:14px}.taste.lk{background:#fff}.taste.zf{background:#fff;font-weight:500}
+.taste.op{background:#f0f2f5}.taste.st{background:#e8eef9;color:#163f80}.taste.ak{background:#e3e6eb;font-size:16px}
+.taste.leer{visibility:hidden}
+@media (max-width:520px){.tastatur .koerper{flex-direction:column;gap:4px}.tastatur .links{grid-template-columns:repeat(4,1fr)}.taste{min-height:40px}}
+.feld.text textarea{width:100%;box-sizing:border-box;font:16px/1.45 system-ui,sans-serif;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;resize:vertical;color:var(--ink)}
+.feld.text textarea:focus{outline:none;border-color:var(--f1)}
+.feld.gesperrt input,.feld.gesperrt textarea{background:var(--panel);color:var(--ink)}
 .rueck{margin-top:8px;padding:8px 10px;border-radius:8px}
 .rueck.gut{background:#e6f4f1;color:#0b5c53}
 .rueck.schlecht{background:#fbeceb;color:#8c1d18}
@@ -52,3 +65,30 @@ h2{font-size:1.05rem;margin:0 0 6px}
 .anzeige{margin:10px 0}.anzeige div{display:flex;justify-content:space-between;gap:8px;border-top:1px solid var(--line);padding:4px 0;font-variant-numeric:tabular-nums}
 .stand{margin:10px 0;font-variant-numeric:tabular-nums}
 .diagramm{width:100%;display:block;border:1px solid var(--line);border-radius:8px}
+.uhr{position:sticky;top:0;z-index:5;margin:0 -2px 12px;padding:8px 12px;border-radius:8px;background:var(--ink);color:#fff;font-weight:600;font-variant-numeric:tabular-nums}
+.uhr.knapp{background:#9a5b00}.uhr.vorbei{background:var(--schlecht)}.uhr.fertig{background:var(--gut)}
+.start table.teile{border-collapse:collapse;width:100%;margin:4px 0 8px;font-size:.95rem}
+.start th,.start td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line)}.start th{color:var(--muted);font-weight:600;font-size:.85rem}
+.start td:last-child,.start th:last-child{text-align:right}.start td:nth-child(-n+2){white-space:nowrap}
+.summe{font-weight:600;margin:4px 0 10px}
+.wahl{display:grid;gap:6px;margin:8px 0}.wahl .frage{margin:4px 0 0;font-weight:600}
+.wahl label{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;cursor:pointer}
+.wahl input{width:18px;height:18px;accent-color:var(--f1);flex:none}
+.teilkopf h2{margin:4px 0 0}.teilkopf p{margin:2px 0 10px}
+.aufgabe-pa .nr{display:flex;justify-content:space-between;gap:8px;font-size:.85rem}
+.pkt{color:var(--muted);font-weight:600;white-space:nowrap;margin-left:auto}
+.ta{margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.ta:first-of-type{border-top:0}
+.ta-kopf{display:flex;gap:8px;align-items:baseline}.ta-text{flex:1}
+.feldzeile{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin-top:8px}
+.feldzeile .feld{flex:1 1 180px;min-width:0}.feldzeile .vor,.feldzeile .nach{white-space:nowrap}
+.feldzeile .tastatur{flex-basis:100%}.feldzeile .vorschau{font-size:1rem;min-height:0;padding:4px 10px}
+.taste.st{font-size:15px}
+.fig{width:100%;display:block;border:1px solid var(--line);border-radius:8px;margin:8px 0}
+.papier{margin:8px 0 0;font-size:.9rem;color:var(--muted)}.papier::before{content:"✎ "}
+.klein-knopf{padding:4px 10px;font-size:.9rem;margin-top:8px}
+.erg{margin:4px 0 0;font-size:.95rem;font-weight:600}.erg.richtig{color:var(--gut)}.erg.falsch{color:var(--schlecht)}.erg.gerundet{color:#9a5b00}.erg.leer,.erg.offen{color:var(--muted)}
+.erg span{font-weight:400}
+.optionen label.richtig{border-color:var(--gut);background:#eef7f6}.optionen label.falsch{border-color:var(--schlecht);background:#fbeceb}
+.auswertung{margin-top:8px;font-size:.9rem;color:var(--muted)}.auswertung p{margin:4px 0}
+.loesung{margin-top:6px;padding:8px 10px;border-left:3px solid var(--f3);background:#eef7f6;border-radius:0 8px 8px 0;color:var(--ink);font-size:1rem}
+.ergebnis{border-color:var(--f1);border-width:2px}.ergebnis h2{margin:0 0 6px}

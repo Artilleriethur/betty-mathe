@@ -5,7 +5,7 @@ const Betty = (() => {
     if (!document.getElementById("betty-stil")) { const s = document.createElement("style"); s.id = "betty-stil"; s.textContent = BETTY_CSS; document.head.appendChild(s); }
     document.title = cfg.titel || "Mathe";
     const m = document.createElement("main"); m.innerHTML = `<h1 id="titel"></h1><div class="auftrag" id="auftrag"></div>` + html; document.body.appendChild(m);
-    $("titel").textContent = cfg.titel || ""; Tex.text($("auftrag"), cfg.auftrag || "");
+    $("titel").textContent = cfg.titel || ""; Tex.text($("auftrag"), cfg.auftrag || ""); Tastatur.vorgabe(cfg.tastatur);
   }
   function regler(box, r, neu, klasse) {
     if (!(r.name in P)) P[r.name] = r.start;
@@ -99,15 +99,15 @@ const Betty = (() => {
   function uebung(C) {
     seite(C, `<div id="aufgaben"></div><div class="karte"><p id="stand"></p><p class="klein">Wenn du fertig bist oder nicht weiterkommst: Kopiere deine Ergebnisse und füge sie im Chat ein. Dann bekommst du zu allen Aufgaben auf einmal Rückmeldung.</p><button type="button" class="haupt" id="kopieren">Ergebnisse in den Chat kopieren</button></div>`);
     const st = C.aufgaben.map((a, i) => { const b = document.createElement("div"); b.className = "karte"; b.innerHTML = `<div class="nr">Aufgabe ${i + 1}</div>`; $("aufgaben").appendChild(b); return baueAufgabe(b, a, i + 1, stand); });
-    function stand() { $("stand").innerHTML = "<b>" + st.filter(s => s.richtig).length + " von " + st.length + " richtig</b>"; }
+    function stand() { const o = st.filter(s => s.offen).length; $("stand").innerHTML = "<b>" + st.filter(s => s.richtig).length + " von " + (st.length - o) + " richtig</b>" + (o ? " · " + o + " prüft Betty im Chat" : ""); }
     stand(); $("kopieren").addEventListener("click", e => kopiere(ergebnisText(C.titel, st), e.currentTarget));
   }
 
   function tastatur(C) {
-    seite(C, `<div id="felder"></div><div class="knoepfe"><button type="button" class="haupt" id="kopieren">In den Chat kopieren</button><button type="button" id="leeren">Leeren</button></div><p class="klein">□/□ macht einen Bruch, xⁿ eine Hochzahl, √ eine Wurzel. Mit ◀ und ▶ kommst du aus einer Klammer heraus. Unter dem Feld siehst du, wie die Formel aussieht.</p>`);
+    seite(C, `<div id="felder"></div><div class="knoepfe"><button type="button" class="haupt" id="kopieren">In den Chat kopieren</button><button type="button" id="leeren">Leeren</button></div><p class="klein">□/□ macht einen Bruch, xⁿ eine Hochzahl, √ eine Wurzel. Mit ◀ und ▶ kommst du aus einer Klammer heraus. Oben wechselst du zwischen Zahlen, Funktionen und Zeichen. Unter dem Feld siehst du, wie die Formel aussieht.</p>`);
     const fs = (C.felder || [{ name: "Antwort" }]).map(f => { const b = document.createElement("div"); b.className = "karte";
       if (C.felder && (C.felder.length > 1 || f.frage)) { const l = document.createElement("div"); l.className = "frage"; Tex.text(l, f.frage || f.name + ":"); b.appendChild(l); }
-      $("felder").appendChild(b); return { name: f.name, feld: Tastatur.feld(b, { platzhalter: f.platzhalter }) }; });
+      $("felder").appendChild(b); return { name: f.name, feld: Tastatur.feld(b, { platzhalter: f.platzhalter, tastatur: f.tastatur }) }; });
     $("kopieren").addEventListener("click", e => { const t = fs.filter(f => f.feld.wert()).map(f => (fs.length > 1 ? f.name + ": " : "") + "$" + f.feld.tex() + "$"); kopiere(t.length ? "Meine Antwort: " + t.join("; ") : "", e.currentTarget); });
     $("leeren").addEventListener("click", () => fs.forEach(f => { f.feld.input.value = ""; f.feld.input.dispatchEvent(new Event("input")); }));
     fs[0].feld.input.focus();
@@ -149,5 +149,5 @@ const Betty = (() => {
     C.anzahlen.forEach((k, i) => $("knoepfe").appendChild(knopf(k === 1 ? "1-mal" : z(k, 0) + "-mal", () => ziehen(k), i === 0 ? "haupt" : "")));
     $("knoepfe").appendChild(knopf("Von vorn", neu)); beiGroesse(zeichne); neu();
   }
-  return { funktionen, lernschritte, uebung, tastatur, zufall, version: "1.0.0" };
+  return { funktionen, lernschritte, uebung, tastatur, zufall, probearbeit: C => probearbeit(C, { seite, $, beiGroesse, rundPruefen }), version: "1.0.0" };
 })();

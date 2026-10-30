@@ -2,7 +2,7 @@
 function knopf(text, tu, klasse) { const b = document.createElement("button"); b.type = "button"; b.textContent = text; if (klasse) b.className = klasse; b.addEventListener("click", tu); return b; }
 function kasten(klasse) { const d = document.createElement("div"); d.className = klasse; d.hidden = true; return d; }
 function baueAufgabe(box, a, nr, geaendert) {
-  const st = { nr, versuche: 0, richtig: false, eingabe: "", weg: false, frueher: [] };
+  const st = { nr, versuche: 0, richtig: false, offen: false, eingabe: "", weg: false, frueher: [] };
   const q = document.createElement("div"); q.className = "frage"; Tex.text(q, a.frage); box.appendChild(q);
   let feld = null, wahl = null;
   if (a.optionen) {
@@ -12,7 +12,7 @@ function baueAufgabe(box, a, nr, geaendert) {
       Object.assign(r, { type: "radio", name: "wahl" + nr, value: i }); Tex.text(s, o); l.append(r, s); wahl.appendChild(l);
     });
     box.appendChild(wahl);
-  } else feld = Tastatur.feld(box, { beiEnter: pruefe, platzhalter: a.platzhalter });
+  } else feld = Tastatur.feld(box, { beiEnter: pruefe, platzhalter: a.platzhalter, tastatur: a.tastatur });
   const reihe = document.createElement("div"); reihe.className = "knoepfe";
   const bTipp = knopf("Tipp", () => zeige(tipp, a.tipp)), bWeg = knopf("Lösungsweg", () => { st.weg = true; zeige(weg, a.weg); geaendert(); });
   bTipp.hidden = !a.tipp; bWeg.hidden = true;
@@ -27,7 +27,11 @@ function baueAufgabe(box, a, nr, geaendert) {
       ok = +r.value === a.richtig; roh = String(r.value); st.eingabe = a.optionen[+r.value];
     } else {
       roh = feld.wert(); if (!roh) return melde("Tippe zuerst eine Antwort ein.");
-      ok = Term.gleich(roh, a.antwort, a); st.eingabe = "$" + feld.tex() + "$";
+      st.eingabe = "$" + feld.tex() + "$";
+      if (a.antwort == null) { // ohne Lösungsschlüssel: nicht bewerten, Betty prüft im Chat
+        st.offen = true; st.versuche = 1; melde(a.notiert || "Notiert. Kopier am Ende deine Ergebnisse in den Chat, dann prüfe ich das."); if (a.weg) bWeg.hidden = false; geaendert(); return;
+      }
+      ok = Term.gleich(roh, a.antwort, a);
     }
     if (st.versuche && vorher && !st.richtig) st.frueher.push(vorher);
     st.versuche++; st.richtig = ok;
@@ -45,7 +49,7 @@ function baueAufgabe(box, a, nr, geaendert) {
 function ergebnisText(titel, liste) {
   const z = ["Meine Ergebnisse: " + titel];
   liste.forEach(s => {
-    let t = !s.versuche ? "nicht bearbeitet" : s.richtig ? "richtig" + (s.versuche > 1 ? " im " + s.versuche + ". Versuch" : "") + ": " + s.eingabe
+    let t = !s.versuche ? "nicht bearbeitet" : s.offen ? "eingegeben (bitte prüfen): " + s.eingabe : s.richtig ? "richtig" + (s.versuche > 1 ? " im " + s.versuche + ". Versuch" : "") + ": " + s.eingabe
       : "noch nicht richtig (" + s.versuche + (s.versuche > 1 ? " Versuche" : " Versuch") + "), zuletzt: " + s.eingabe;
     if (s.frueher.length) t += " (vorher: " + s.frueher.join(", ") + ")";
     if (s.weg) t += " (Lösungsweg angesehen)";

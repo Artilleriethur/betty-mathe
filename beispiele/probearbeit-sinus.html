@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Artilleriethur/betty-mathe@main/betty.min.js"></script>
+</head>
+<body>
+<script>
+const CONFIG = {
+  titel: "Probe-Klassenarbeit: Sinus und Kosinus",
+  auftrag: "Klasse 10. Wähle aus, was du bearbeiten willst, und starte dann.",
+  tastatur: "trigonometrie",
+  optionen: { teile: "AB", auswahl: true, uhr: true, loesungen: true },
+  teile: [
+    { id: "A", minuten: 25, taschenrechner: false, hilfsmittel: "ohne Hilfsmittel", aufgaben: [
+      { titel: "Auswahlaufgaben", text: "Genau eine Antwort ist richtig.", teile: [
+        { text: "Die kleinste Periode von $y = sin(2x)$ ist", optionen: ["$π/2$", "$π$", "$2π$", "$4π$"], richtig: 1, punkte: 1, loesung: "$p = 2π/2 = π$" },
+        { text: "$cos(150°)$ ist gleich", optionen: ["$1/2$", "$-1/2$", "$√3/2$", "$-√3/2$"], richtig: 3, punkte: 1, loesung: "$cos(150°) = -cos(30°) = -√3/2$" },
+        { text: "$π/6$ im Gradmaß ist", optionen: ["$15°$", "$30°$", "$60°$", "$90°$"], richtig: 1, punkte: 1, loesung: "$180°/6 = 30°$" } ] },
+      { titel: "Winkel und Einheitskreis", teile: [
+        { text: "Rechne exakt um.", punkte: 3, felder: [
+          { vor: "$150° =$", antwort: "5π/6", fehler: [{ antwort: "6π/5", text: "Der Bruch ist umgedreht." }] },
+          { vor: "$-60° =$", antwort: "-π/3" },
+          { vor: "$7π/4 =$", antwort: "315", nach: "°" } ],
+          loesung: "$150° = 150/180·π = 5π/6$, $-60° = -π/3$, $7π/4 = 7·45° = 315°$" },
+        { text: "Gib die exakten Koordinaten des Punktes $P$ zum Winkel $150°$ auf dem Einheitskreis an. Begründe, warum $cos(150°)$ negativ ist.", punkte: 3,
+          felder: [{ vor: "$P =$", antwort: "(-√3/2|1/2)", punkte: 2 }], begruendung: "Begründung", papier: "Einheitskreis mit P auf Papier skizzieren.",
+          loesung: "$P(-√3/2 | 1/2)$. P liegt links von der y-Achse, also ist die x-Koordinate negativ, und sie ist $cos(150°)$." } ] },
+      { titel: "Sinus und Kosinus", teile: [
+        { text: "Berechne exakt.", punkte: 3, felder: [
+          { vor: "$sin(3π/2) =$", antwort: "-1" },
+          { vor: "$cos(2π/3) =$", antwort: "-1/2", fehler: [{ antwort: "1/2", text: "Achte auf das Vorzeichen: $2π/3$ liegt im zweiten Quadranten." }] },
+          { vor: "$sin(13π/6) =$", antwort: "1/2" } ], loesung: "$-1$; $-1/2$; $sin(13π/6) = sin(π/6) = 1/2$" },
+        { text: "Gib alle Nullstellen von $y = sin(x)$ an.", punkte: 1, felder: [{ vor: "$x =$", antwort: "kπ", nach: "mit $k ∈ ℤ$" }], loesung: "$x = kπ$ mit $k ∈ ℤ$" },
+        { text: "Skizziere $y = cos(x)$ für $-π ≤ x ≤ 2π$. Begründe am Graphen, dass $cos(x) = sin(x + π/2)$ gilt.", punkte: 3, begruendung: true, papier: true,
+          loesung: "Verschiebt man die Sinuskurve um $π/2$ nach links, liegt sie genau auf der Kosinuskurve: Hochpunkt bei $x = 0$, Nullstellen bei $±π/2$." } ] } ] },
+    { id: "B", minuten: 25, taschenrechner: true, hilfsmittel: "Taschenrechner und Formelsammlung", aufgaben: [
+      { titel: "Graph ablesen", text: "Der Graph gehört zu $g(x) = a·sin(b·(x + c)) + d$. Die markierten Punkte liegen auf Gitterlinien.",
+        ansicht: { xMin: -0.4, xMax: 6.6, yMin: -0.5, yMax: 4.2, xPi: true },
+        zeichne: (g, p) => { const f = x => 1.5 * Math.sin(2 * (x - Math.PI / 4)) + 2; g.kurve(f); [0, 1, 2, 3, 4].forEach(i => g.punkt(i * Math.PI / 2, f(i * Math.PI / 2))); },
+        teile: [
+          { text: "Lies ab.", punkte: 3, felder: [{ vor: "Amplitude $a =$", antwort: "1,5" }, { vor: "Periode $p =$", antwort: "π" }, { vor: "Mittellinie $y =$", antwort: "2" }] },
+          { text: "Gib einen passenden Funktionsterm an.", punkte: 2, felder: [{ vor: "$g(x) =$", antwort: "1,5sin(2(x-π/4))+2" }], loesung: "$g(x) = 1,5·sin(2·(x - π/4)) + 2$, gleichwertig $-1,5·cos(2x) + 2$" } ] },
+      { titel: "Gleichung", teile: [
+        { text: "Bestimme alle Lösungen von $cos(x) = -0,4$ mit $0 ≤ x < 2π$. Runde auf drei Nachkommastellen.", punkte: 2,
+          felder: [{ vor: "$x =$", antwort: "1,982; 4,301", runden: 3, platzhalter: "Werte mit ; trennen" }], loesung: "$x_1 ≈ 1,982$ und $x_2 = 2π - 1,982 ≈ 4,301$" } ] },
+      { titel: "Riesenrad", text: "Ein Riesenrad hat einen Durchmesser von 24 m. Der tiefste Punkt einer Gondel liegt 3 m über dem Boden. Eine Umdrehung dauert 6 Minuten. Bei $t = 0$ ist die Gondel ganz unten.", teile: [
+        { text: "Bestimme eine Funktion $h$ für die Höhe in Metern nach $t$ Minuten. Gib die Bedeutung der Parameter an.", punkte: 4,
+          felder: [{ vor: "$h(t) =$", antwort: "-12cos(π/3·t)+15", punkte: 2 }], begruendung: "Bedeutung der Parameter",
+          loesung: "$h(t) = 12·sin(π/3·(t - 1,5)) + 15$, gleichwertig $-12·cos(π/3·t) + 15$. Radius 12 m, Periode 6 min, Mitte 15 m hoch." },
+        { text: "Berechne die Höhe nach 2 Minuten.", punkte: 2, felder: [{ vor: "$h(2) =$", antwort: "21", nach: "m" }], loesung: "$h(2) = -12·cos(2π/3) + 15 = 6 + 15 = 21$" },
+        { text: "Wie lange ist die Gondel während einer Umdrehung höher als 21 m? Nenne auch die Grenzzeiten.", punkte: 3,
+          felder: [{ antwort: "2", nach: "min", punkte: 2 }], begruendung: "Grenzzeiten", loesung: "Von $t = 2$ bis $t = 4$, also 2 Minuten." } ] } ] } ]
+};
+if (window.Betty) Betty.probearbeit(CONFIG);
+else document.body.innerHTML = "<p style='font:16px system-ui;padding:16px'>Diese Seite braucht Internet, um den Mathe-Baukasten zu laden. Bitte später noch einmal öffnen.</p>";
+</script>
+</body>
+</html>
