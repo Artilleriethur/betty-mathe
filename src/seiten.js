@@ -11,8 +11,22 @@ const Betty = (() => {
     if (!(r.name in P)) P[r.name] = r.start;
     const l = document.createElement("label"); l.className = klasse || "regler"; l.innerHTML = `${r.anzeige || r.name} = <b></b>`;
     const inp = document.createElement("input"); Object.assign(inp, { type: "range", min: r.min, max: r.max, step: r.schritt, value: P[r.name] });
-    const w = () => l.querySelector("b").textContent = r.pi ? pib(P[r.name]) : z(P[r.name], 3);
+    const w = () => l.querySelector("b").textContent = reglerText(r, P[r.name]);
     inp.addEventListener("input", () => { P[r.name] = rund(+inp.value, r.schritt); w(); neu(); }); w(); l.appendChild(inp); box.appendChild(l); return inp;
+  }
+  function reglerText(r, v) {
+    const winkel = r.grad ?? (r.pi && /winkel|dreh|[αβγδφθ]/i.test((r.anzeige || "") + " " + r.name));
+    if (!winkel) return r.pi ? pib(v) : z(v, 3);
+    const bog = r.pi ? v : v * Math.PI / 180;
+    return z(bog * 180 / Math.PI, 1) + "° = " + pib(bog);
+  }
+  function rundPruefen(C, aufrufe) {
+    const v = C.ansicht; if (!v || v.gleicheEinheiten !== undefined) return;
+    const q = (v.yMax - v.yMin) / (v.xMax - v.xMin); if (!(q >= 0.2 && q <= 1.6)) return;
+    let rund = false; const s = {};
+    Object.keys(g).forEach(k => { s[k] = () => 0; }); s.kreis = s.bogen = () => { rund = true; };
+    aufrufe.forEach(f => { try { f(s); } catch (e) {} });
+    if (rund) v.gleicheEinheiten = true;
   }
   function beiGroesse(f) { let w = 0; addEventListener("resize", () => { cancelAnimationFrame(w); w = requestAnimationFrame(f); }); }
 
@@ -22,7 +36,7 @@ const Betty = (() => {
     function griff(x, y, text, farbe, setze) {
       if (!isFinite(x) || !isFinite(y)) return;
       el("circle", { cx: px(x), cy: py(y), r: 8, fill: farbe, stroke: "#fff", "stroke-width": 3 }); el("circle", { cx: px(x), cy: py(y), r: 11, fill: "none", stroke: farbe, "stroke-width": 1 });
-      if (text) el("text", { x: px(x) + 13, y: py(y) - 11, class: "marke", fill: farbe }).textContent = text;
+      if (text) el("text", { x: px(x) + 13, y: py(y) - 11, class: "marke", fill: farbe }).textContent = marke(text);
       griffe.push({ sx: px(x), sy: py(y), setze });
     }
     function zeichne() {
@@ -35,7 +49,7 @@ const Betty = (() => {
       (C.punkte || []).forEach(q => griff(P[q.name].x, P[q.name].y, q.name, q.farbe || "var(--f1)", (x, y) => { const r = q.raster || 0.1; P[q.name] = { x: rund(Math.min(V.xMax, Math.max(V.xMin, x)), r), y: rund(Math.min(V.yMax, Math.max(V.yMin, y)), r) }; }));
       fig.style.touchAction = griffe.length ? "none" : "auto"; $("hinweis").hidden = !griffe.length;
       $("terme").innerHTML = ""; C.funktionen.filter(f => f.term).forEach(f => { const p = document.createElement("p"); p.className = "term"; p.innerHTML = `<b style="color:${f.farbe || "var(--f1)"}">●</b> `; const s = document.createElement("span"); Tex.text(s, f.term(P)); p.appendChild(s); $("terme").appendChild(p); });
-      C.parameter.forEach(q => { $("w_" + q.name).textContent = q.pi ? pib(P[q.name]) : z(P[q.name], 3); });
+      C.parameter.forEach(q => { $("w_" + q.name).textContent = reglerText(q, P[q.name]); });
       $("anzeige").innerHTML = ""; if (C.anzeige) C.anzeige(P).forEach(([k, v]) => { const d = document.createElement("div"), a = document.createElement("span"), b = document.createElement("span"); Tex.text(a, k); Tex.text(b, v); d.append(a, b); $("anzeige").appendChild(d); });
     }
     const punktIn = e => { const r = fig.getBoundingClientRect(); return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height]; };
@@ -49,7 +63,8 @@ const Betty = (() => {
       const r = document.createElement("input"); Object.assign(r, { type: "range", id: "r_" + q.name, min: q.min, max: q.max, step: q.schritt });
       r.addEventListener("input", () => { P[q.name] = rund(+r.value, q.schritt); zeichne(); }); l.appendChild(r); $("regler").appendChild(l);
     });
-    $("reset").addEventListener("click", () => { start(); zeichne(); }); beiGroesse(zeichne); start(); zeichne();
+    $("reset").addEventListener("click", () => { start(); zeichne(); }); beiGroesse(zeichne); start();
+    rundPruefen(C, [s => C.hintergrund && C.hintergrund(s, P), s => C.extras && C.extras(s, P)]); zeichne();
   }
 
   function lernschritte(C) {
@@ -77,6 +92,7 @@ const Betty = (() => {
     if (erg.length) ende.appendChild(knopf("Ergebnisse in den Chat kopieren", e => kopiere(ergebnisText(C.titel, erg), e.currentTarget), "haupt"));
     ende.appendChild(knopf("Noch einmal von vorn", () => zeige(0))); $("schritte").appendChild(ende); karten.push(ende);
     $("zurueck").addEventListener("click", () => zeige(Math.max(0, jetzt - 1))); $("weiter").addEventListener("click", () => { if (jetzt < karten.length - 1) zeige(jetzt + 1); });
+    rundPruefen(C, C.schritte.map(s => g2 => s.zeichne && s.zeichne(g2, P, true)));
     beiGroesse(zeichne); zeige(0);
   }
 

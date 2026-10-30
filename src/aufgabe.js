@@ -21,7 +21,7 @@ function baueAufgabe(box, a, nr, geaendert) {
   function zeige(k, s) { if (s) { Tex.text(k, s); k.hidden = false; } }
   function melde(s, ok) { rueck.hidden = false; rueck.className = "rueck" + (ok === true ? " gut" : ok === false ? " schlecht" : ""); Tex.text(rueck, s); }
   function pruefe() {
-    let ok, roh; const vorher = st.eingabe;
+    let ok, roh; const vorher = st.eingabe, nach = a.wegNach ?? 3;
     if (wahl) {
       const r = wahl.querySelector("input:checked"); if (!r) return melde("Wähle zuerst eine Antwort.");
       ok = +r.value === a.richtig; roh = String(r.value); st.eingabe = a.optionen[+r.value];
@@ -32,9 +32,12 @@ function baueAufgabe(box, a, nr, geaendert) {
     if (st.versuche && vorher && !st.richtig) st.frueher.push(vorher);
     st.versuche++; st.richtig = ok;
     const bekannt = !ok && (a.fehler || []).find(f => wahl ? String(f.antwort) === roh : Term.gleich(roh, String(f.antwort), {}));
-    melde(ok ? (a.lob || "Richtig.") : bekannt ? bekannt.text : st.versuche === 1 && a.tipp ? "Noch nicht. Schau dir den Tipp an." : "Noch nicht richtig." + (a.weg ? " Du kannst dir jetzt den Lösungsweg ansehen." : ""), ok);
+    const wegFrei = !ok && a.weg && st.versuche >= nach;
+    const jetztFrei = wegFrei && st.versuche === nach;
+    melde(ok ? (a.lob || "Richtig.") : (bekannt ? bekannt.text : st.versuche === 1 && a.tipp ? "Noch nicht. Schau dir den Tipp an." : jetztFrei ? "Noch nicht richtig." : "Noch nicht richtig. Versuch es noch einmal.")
+      + (jetztFrei ? " Den Lösungsweg kannst du jetzt aufdecken." : ""), ok);
     if (!ok && st.versuche === 1) zeige(tipp, a.tipp);
-    if ((ok || st.versuche >= 2) && a.weg) bWeg.hidden = false;
+    if ((ok || st.versuche >= nach) && a.weg) bWeg.hidden = false;
     geaendert();
   }
   return st;

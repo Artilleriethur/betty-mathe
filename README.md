@@ -24,6 +24,13 @@ Betty.lernschritte(CONFIG);
 
 Beispiele stehen im Ordner `beispiele/`. Antworten werden mathematisch geprüft (`Term.gleich`): 2/4, 1/2 und 0,5 gelten als gleich, Terme werden durch Einsetzen verglichen, Listen in beliebiger Reihenfolge, Punkte als (x|y).
 
+Ein paar Verhaltensregeln:
+
+- Bei Fragen erscheint nach dem ersten Fehlversuch der Tipp. Der Lösungsweg kommt nach einer richtigen Antwort oder nach drei Versuchen; mit `wegNach: 2` an der Frage geht es früher.
+- Regler mit `pi: true` zeigen Vielfache von π. Ist der Regler ein Winkel (α, φ, „Winkel“, „Drehwinkel“) oder hat er `grad: true`, steht Grad daneben, etwa „60° = π/3“.
+- Zeichnet eine Seite mit `g.kreis` oder `g.bogen` und legt `gleicheEinheiten` nicht selbst fest, werden die Einheiten gleich gesetzt, damit Kreise rund bleiben.
+- Beschriftungen in `g.text` dürfen `$…$` enthalten; daraus wird lesbarer Text (`$x_1$` → x₁, `$\\alpha$` → α).
+
 ## Aufbau
 
 `src/` enthält die Quellen (`term.js`, `tastatur.js`, `aufgabe.js`, `plot.js`, `seiten.js`, `basis.css`). `betty.js` ist daraus zusammengesetzt, `betty.min.js` mit terser verkleinert. Die Seiten laden `@main`; Änderungen an `main` kommen nach spätestens etwa einem Tag bei allen Seiten an (Cache von jsDelivr). Deshalb wird vor jedem Push getestet.

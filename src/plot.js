@@ -22,6 +22,15 @@ function el(tag, a, parent) {
   for (const k in a) { const v = a[k]; if (v === undefined) continue; if (typeof v === "string" && v.startsWith("var(")) e.style.setProperty(k, v); else e.setAttribute(k, v); }
   (parent || svg).appendChild(e); return e;
 }
+const TIEF = "₀₁₂₃₄₅₆₇₈₉";
+function marke(s) {
+  return String(s ?? "").replace(/\$([^$]+)\$/g, (m, f) => {
+    f = f.replace(/_\{?(\d+)\}?/g, (m2, d) => [...d].map(c => TIEF[c]).join(""));
+    if (f.includes("\\")) return Tex.einfach(f);
+    return f.replace(/<=/g, "≤").replace(/>=/g, "≥").replace(/\*/g, "·").replace(/sqrt/g, "√").replace(/(^|[^a-zA-Z])pi(?![a-zA-Z])/g, "$1π")
+      .replace(/\^2(?!\d)/g, "²").replace(/\^3(?!\d)/g, "³").replace(/(\d)\.(\d)/g, "$1,$2").replace(/-/g, "−");
+  });
+}
 const px = x => (x - V.xMin) / (V.xMax - V.xMin) * W, py = y => H - (y - V.yMin) / (V.yMax - V.yMin) * H;
 function messen() {
   const xR = A.xMax - A.xMin, yR = A.yMax - A.yMin;
@@ -75,7 +84,7 @@ const g = {
   gerade(x0, y0, m, o) { return g.linie(V.xMin, y0 + m * (V.xMin - x0), V.xMax, y0 + m * (V.xMax - x0), o); },
   senkrechte(x0, o) { return g.linie(x0, V.yMin, x0, V.yMax, o); },
   punkt(x, y, o = {}) { if (!isFinite(x) || !isFinite(y)) return; el("circle", { cx: px(x), cy: py(y), r: o.r || 5, fill: o.farbe || "var(--ink)", stroke: "#fff", "stroke-width": 1.5 }); if (o.text) g.text(x, y, o.text, { dx: o.dx ?? 9, dy: o.dy ?? -9, farbe: o.farbe }); },
-  text(x, y, s, o = {}) { const t = el("text", { x: px(x) + (o.dx || 0), y: py(y) + (o.dy || 0), class: "marke", fill: o.farbe || "var(--ink)", "text-anchor": o.anker || "start" }); t.textContent = s; return t; },
+  text(x, y, s, o = {}) { s = marke(s); const t = el("text", { x: px(x) + (o.dx || 0), y: py(y) + (o.dy || 0), class: "marke", fill: o.farbe || "var(--ink)", "text-anchor": o.anker || "start" }); t.textContent = s; return t; },
   pfeil(x1, y1, x2, y2, o = {}) { const f = o.farbe || "var(--ink)"; el("line", { x1: px(x1), y1: py(y1), x2: px(x2), y2: py(y2), stroke: f, "stroke-width": o.breite || 2.5 }); spitze(px(x2), py(y2), Math.atan2(py(y2) - py(y1), px(x2) - px(x1)), f); },
   rechteck(x1, y1, x2, y2, o = {}) { return el("rect", { x: Math.min(px(x1), px(x2)), y: Math.min(py(y1), py(y2)), width: Math.abs(px(x2) - px(x1)), height: Math.abs(py(y2) - py(y1)), fill: o.farbe || "var(--f1)", "fill-opacity": o.deckkraft ?? 0.2, stroke: o.rand, "stroke-width": o.rand ? 1 : undefined, "clip-path": "url(#clip)" }); },
   polygon(pts, o = {}) { return el("polygon", { points: pts.map(q => px(q[0]).toFixed(1) + "," + py(q[1]).toFixed(1)).join(" "), fill: o.farbe || "var(--f1)", "fill-opacity": o.deckkraft ?? 0.2, stroke: o.rand, "stroke-width": o.rand ? 2 : undefined, "clip-path": "url(#clip)" }); },
